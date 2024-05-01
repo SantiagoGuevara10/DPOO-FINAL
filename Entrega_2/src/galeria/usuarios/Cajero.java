@@ -28,7 +28,6 @@ public class Cajero extends Empleado {
 
     public void emitirRecibos() {
         
-        
         transacciones.forEach(transaccion -> {
             try (FileWriter writer = new FileWriter("Recibo_" + transaccion.hashCode() + ".txt")) {
                 writer.write("Recibo de la " + transaccion);
