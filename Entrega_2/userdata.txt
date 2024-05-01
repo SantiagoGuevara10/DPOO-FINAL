@@ -1,0 +1,3 @@
+adminUsername,adminPassword,administrador
+CajeroUsername,CajeroPassword,cajero
+CompradorPropietarioUsername,CompradorPropietarioPassword,comprador
