@@ -108,20 +108,15 @@ public class Pieza {
         return propietario;
     }
 
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    
     public void setAnioCreacion(int anioCreacion) {
-        if (anioCreacion > 1000 && anioCreacion <= Calendar.getInstance().get(Calendar.YEAR)) {
-            this.anioCreacion = anioCreacion;
-        } else {
-            throw new IllegalArgumentException("Año de creación inválido.");
-        }
+        this.anioCreacion = anioCreacion;
     }
 
     public void actualizarEstadoExhibicion(boolean estaExhibida) {
         this.estaExhibida = estaExhibida;
-        System.out.println("Estado de exhibición actualizado para la pieza: " + titulo);
     }
 }

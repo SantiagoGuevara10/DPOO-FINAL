@@ -34,11 +34,8 @@ public class Subasta {
 	
 	public void mandarOferta(String piezaId) {
 		Oferta maxima = this.getMaximaOferta(piezaId);
-		if (maxima != null) {
-			Administrador.agregarOferta(maxima);
-		} else {
-			System.out.println("No existen ofertas.");
-		}
+		Administrador.agregarOferta(maxima);
+		
 	}
 	
 	public Oferta getMaximaOferta(String piezaId) {
