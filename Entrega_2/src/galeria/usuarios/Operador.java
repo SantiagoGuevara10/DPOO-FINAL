@@ -11,10 +11,7 @@ public class Operador extends Empleado {
         super(idEmpleado, nombre, username, passwordHash, role);
     }
 
-    @Override
-    public void realizarAccionesEspecificas() {
-        
-    }
+    
 
     public void asignarSubasta(Subasta subasta) {
         this.subastasRealizadas.add(subasta);

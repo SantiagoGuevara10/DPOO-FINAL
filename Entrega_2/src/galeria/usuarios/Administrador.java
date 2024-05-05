@@ -15,25 +15,7 @@ public class Administrador extends Empleado {
         super(idEmpleado, nombre, username, passwordHash, role);
     }
 
-    @Override
-    public void realizarAccionesEspecificas() {
-        
-        gestionarSistema();
-    }
-
-    private void gestionarSistema() {
-        
-        manageUserAccess();
-        updateSystemSettings();
-    }
-
-    private void manageUserAccess() {
-        
-    }
-
-    private void updateSystemSettings() {
-        
-    }
+    
 	
 	public void revisarOferta(Oferta oferta) {
 		int dinero = oferta.getDinero();

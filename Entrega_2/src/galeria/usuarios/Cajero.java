@@ -12,12 +12,7 @@ public class Cajero extends Empleado {
         super(idEmpleado, nombre, username, passwordHash, role);
     }
 
-    @Override
-    public void realizarAccionesEspecificas() {
-        
-        procesarTransacciones();
-        emitirRecibos();
-    }
+    
 
     public void procesarTransacciones() {
      
