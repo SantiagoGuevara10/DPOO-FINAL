@@ -4,9 +4,11 @@ import java.util.List;
 
 public class UsuariosRegistrados{
 	private List<Empleado> usuariosEnPrograma;
+	private List<CompradorPropietario> compradoresEnPrograma;
 	
 	public UsuariosRegistrados() {
 		usuariosEnPrograma = new LinkedList<>();
+		compradoresEnPrograma = new LinkedList<>();
 	}
 	
 	public void addUsuario(Empleado empleado) {
@@ -20,5 +22,20 @@ public class UsuariosRegistrados{
 	public List<Empleado> getUsuariosEnPrograma() {
 		return usuariosEnPrograma;
 	}
+	
+	public void addComprador(CompradorPropietario comprador) {
+		this.compradoresEnPrograma.add(comprador);
+	}
+	
+	public void removeComprador(CompradorPropietario comprador) {
+		this.compradoresEnPrograma.remove(comprador);
+	}
+	
+	public List<CompradorPropietario> getCompradoresEnPrograma() {
+		return compradoresEnPrograma;
+	}
+	
+	
+	
 	
 }

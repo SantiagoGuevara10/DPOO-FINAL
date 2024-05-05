@@ -8,8 +8,13 @@ import subasta.Subasta;
 import galeria.inventarios.*;
 
 public class Administrador extends Empleado {
-    public Administrador(String idEmpleado, String nombre, String username, String passwordHash, String role) {
+	
+	private List<String> ofertas;
+	
+	
+    public Administrador(String idEmpleado, String nombre, String username, String passwordHash, String role, List<String> ofertas) {
         super(idEmpleado, nombre, username, passwordHash, role);
+        this.ofertas = ofertas;
     }
 
 	public void agregarPieza(Pieza pieza, InventarioGeneral inventario) {
@@ -45,10 +50,13 @@ public class Administrador extends Empleado {
 		usuario.setEstaVerificado(true);
 	}
 
-	public static void agregarOferta(Oferta maxima) {
-		
-		
-		
+	
+
+	public List<String> getOfertas() {
+		return ofertas;
+	}
+
+	public void setOfertas(Oferta oferta) {
 		
 	}
 	
