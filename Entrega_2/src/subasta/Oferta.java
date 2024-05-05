@@ -1,5 +1,7 @@
 package subasta;
 
+import java.util.List;
+
 import galeria.pieza.Pieza;
 import galeria.usuarios.CompradorPropietario;
 
@@ -32,4 +34,5 @@ public class Oferta {
 	public void setPieza(Pieza pieza) {
 		this.pieza = pieza;
 	}
+	
 }

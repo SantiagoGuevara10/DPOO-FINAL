@@ -14,10 +14,9 @@ public class Subasta {
 	private Map<String, List<Oferta>> ofertas;
 	private List<CompradorPropietario> compradores;
 	
-	public Subasta(List<Pieza> piezas, List<CompradorPropietario> compradores) {
+	public Subasta(List<Pieza> piezas) {
 		this.piezasDisponibles = new HashMap<String, Pieza>();
 		this.ofertas = new HashMap<String, List<Oferta>>();
-		this.compradores = compradores;
 		for (int i = 0; i < piezas.size(); i++) {
 			Pieza pieza = piezas.get(i);
 			String id = pieza.getIdPieza();
@@ -30,11 +29,6 @@ public class Subasta {
 		Pieza pieza = this.piezasDisponibles.get(piezaId);
 		Oferta oferta = new Oferta(comprador, pieza, dinero);
 		this.ofertas.get(piezaId).add(oferta);
-	}
-	
-	public void mandarOferta(String piezaId) {
-		Oferta maxima = this.getMaximaOferta(piezaId);
-		
 	}
 	
 	public Oferta getMaximaOferta(String piezaId) {
