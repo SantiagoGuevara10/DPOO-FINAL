@@ -9,13 +9,15 @@ public class InventarioGeneral {
 	private Map<String,Pieza> inventarioPasado;
 	private Map<String,Pieza> inventarioBodega;
 	private Map<String,Pieza> inventarioExhibido;
+	private double inventarioDinero;
 	
 	
-	public InventarioGeneral()
+	public InventarioGeneral(double inventarioDinero)
 	{
 		inventarioBodega = new HashMap<String, Pieza>( );
 		inventarioPasado =  new HashMap<String, Pieza>( );
 		inventarioExhibido = new HashMap<String, Pieza>( );
+		this.inventarioDinero = inventarioDinero;
 		
 	}
 	
@@ -77,6 +79,18 @@ public class InventarioGeneral {
 	public void removeInventarioExhibido(String piezaId) {
 		this.inventarioExhibido.remove(piezaId);
 	}
+
+
+	public double getInventarioDinero() {
+		return inventarioDinero;
+	}
+
+
+	public void setInventarioDinero(double inventarioDinero) {
+		this.inventarioDinero = inventarioDinero;
+	}
+	
+	
 	
 	
 

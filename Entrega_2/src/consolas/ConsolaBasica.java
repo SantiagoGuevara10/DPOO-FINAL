@@ -1,5 +1,5 @@
 package consolas;
 
-public class ConsolaBasica {
+public abstract class ConsolaBasica {
 
 }
