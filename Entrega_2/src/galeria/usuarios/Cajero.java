@@ -1,5 +1,8 @@
 package galeria.usuarios;
 
+
+
+import galeria.pieza.Pieza;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,25 +16,37 @@ public class Cajero extends Empleado {
     }
 
     
-
-    public void procesarTransacciones() {
-     
-        transacciones.add("Transacción " + System.currentTimeMillis());
+    public void procesarPago(CompradorPropietario comprador, CompradorPropietario vendedor, double monto, Pieza pieza) {
+        
+        if (comprador.getDinero() >= monto) {
+            
+            comprador.setDinero(comprador.getDinero() - monto);
       
-       
+            vendedor.setDinero(vendedor.getDinero() + monto);
+           
+            pieza.setPropietario(comprador);
+     
+            transacciones.add("Pago de $" + monto + " realizado por " + comprador.getNombre() + " para la pieza " + pieza.getTitulo());
+            
+        }
     }
 
+ 
     public void emitirRecibos() {
-        
         transacciones.forEach(transaccion -> {
-            try (FileWriter writer = new FileWriter("Recibo_" + transaccion.hashCode() + ".txt")) {
-                writer.write("Recibo de la " + transaccion);
-               
-            } catch (IOException e) {
-                
-            }
+           
+            emitirRecibo(transaccion);
         });
-      
+     
         transacciones.clear();
+    }
+
+   
+    private void emitirRecibo(String transaccion) {
+        try (FileWriter writer = new FileWriter("Recibo_" + transaccion.hashCode() + ".txt")) {
+            writer.write("Recibo de la " + transaccion);
+        } catch (IOException e) {
+            
+        }
     }
 }

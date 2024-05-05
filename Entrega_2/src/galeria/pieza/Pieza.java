@@ -118,4 +118,7 @@ public class Pieza {
     public void actualizarEstadoExhibicion(boolean estaExhibida) {
         this.estaExhibida = estaExhibida;
     }
+    public void setPropietario(CompradorPropietario nuevoPropietario) {
+        this.propietario = nuevoPropietario;
+    }
 }
