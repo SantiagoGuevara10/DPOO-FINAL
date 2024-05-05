@@ -28,10 +28,15 @@ public class Administrador extends Empleado {
 		if (pieza.getEstadoPieza() == "bodega") {
 		     inventario.removeInventarioBodega(pieza.getIdPieza());
 		     inventario.addInventarioPasado(pieza.getIdPieza(), pieza);
-		     propietario.setPiezas(null);
+		     propietario.setPiezas(pieza);
 			
 		}
 		else if (pieza.getEstadoPieza() == "exhibida") {
+			inventario.removeInventarioExhibido(pieza.getIdPieza());
+			inventario.addInventarioPasado(pieza.getIdPieza(), pieza);
+			propietario.setPiezas(pieza);
+			
+			
 		}
 		
 	}
