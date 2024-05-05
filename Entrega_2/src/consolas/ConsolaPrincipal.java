@@ -1,7 +1,6 @@
 package consolas;
 
 import galeria.inventarios.InventarioGeneral;
-import uniandes.dpoo.gasolinera.consola.ConsolaCrearGasolinera;
 
 /**
  * En esta clase se encuentra el método main de la aplicación.
@@ -12,7 +11,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
 	/**
      * Opciones que se mostrarán en el menú principal
      */
-    private final String[] opcionesMenuPrincipal = new String[]{"Crear nuevo inventario","Crear nuevo usuario", "Cargar inventario de un archivo", "Guardar inventario en un archivo", "Salir" };
+    private final String[] opcionesMenuPrincipal = new String[]{"Ingresar como Empleado","Ingresar como cliente","Cargar inventario","Cargar usuarios","Salir" };
 
     private InventarioGeneral inventario;
     
@@ -26,7 +25,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
         int opcionSeleccionada = mostrarMenu( "Menú principal", opcionesMenuPrincipal );
         if( opcionSeleccionada == 1 )
         {
-            usarGasolinera( );
+            
         }
         else if( opcionSeleccionada == 2 )
         {
