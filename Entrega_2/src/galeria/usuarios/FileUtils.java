@@ -55,6 +55,16 @@ public class FileUtils {
         
         return false;
     }
+    public static String getRole(String username) {
+        String userDetails = userCredentials.get(username);
+        if (userDetails != null) {
+            String[] parts = userDetails.split(",");
+            if (parts.length > 2) {
+                return parts[2];
+            }
+        }
+        return null;
+    }
 
    
     public static boolean isUserAuthorized(String username, String operation) {

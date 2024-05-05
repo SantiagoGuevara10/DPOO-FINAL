@@ -51,6 +51,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
         mostrarMenuPrincipal( );
     }
     
+    
     public static void main( String[] args )
     {
         ConsolaPrincipal c = new ConsolaPrincipal( );
