@@ -39,6 +39,13 @@ public class Administrador extends Empleado {
 	public void verificarUsuario(CompradorPropietario usuario) {
 		usuario.setEstaVerificado(true);
 	}
+
+	public static void agregarOferta(Oferta maxima) {
+		
+		
+		
+		
+	}
 	
 	
 		

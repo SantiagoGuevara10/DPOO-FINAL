@@ -20,7 +20,5 @@ public class UsuariosRegistrados{
 	public List<Empleado> getUsuariosEnPrograma() {
 		return usuariosEnPrograma;
 	}
-
-
 	
 }
