@@ -37,9 +37,9 @@ public class Administrador extends Empleado {
 	}
 
 	public void verificarUsuario(CompradorPropietario usuario) {
-		usuario.setEstaVerificado(true);
+		usuario.setEstaVerificado(true);ac
 	}
 	
-	piblic void 
+	
 		
 	}
