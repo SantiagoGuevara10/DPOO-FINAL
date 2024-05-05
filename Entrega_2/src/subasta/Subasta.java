@@ -34,7 +34,6 @@ public class Subasta {
 	
 	public void mandarOferta(String piezaId) {
 		Oferta maxima = this.getMaximaOferta(piezaId);
-		Administrador.agregarOferta(maxima);
 		
 	}
 	

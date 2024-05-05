@@ -9,12 +9,13 @@ import galeria.inventarios.*;
 
 public class Administrador extends Empleado {
 	
-	private List<String> ofertas;
+	private List<Oferta> ofertas;
+	
 	
 	
     public Administrador(String idEmpleado, String nombre, String username, String passwordHash, String role, List<String> ofertas) {
         super(idEmpleado, nombre, username, passwordHash, role);
-        this.ofertas = ofertas;
+        ofertas = new LinkedList<>();
     }
 
 	public void agregarPieza(Pieza pieza, InventarioGeneral inventario) {
@@ -52,14 +53,9 @@ public class Administrador extends Empleado {
 
 	
 
-	public List<String> getOfertas() {
-		return ofertas;
+	public void agregarOferta(Oferta oferta){
+		ofertas.add(oferta);
 	}
-
-	public void setOfertas(Oferta oferta) {
-		
-	}
-	
 	
 		
 	}
