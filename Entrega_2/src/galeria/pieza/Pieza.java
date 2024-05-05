@@ -1,10 +1,9 @@
 package galeria.pieza;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import galeria.usuarios.Propietario;  
+import galeria.usuarios.CompradorPropietario;
 
 /**
  * Clase que representa una pieza de arte en la galería.
@@ -24,12 +23,12 @@ public class Pieza {
     private Date fechaDeIngreso;
     private boolean esVigente;
     private String descripcion;
-    private Propietario propietario;  
+    private CompradorPropietario propietario;  
 
     public Pieza(String idPieza, String titulo, int anioCreacion, String lugarCreacion, 
                  String estadoPieza, boolean estaExhibida, boolean disponibleVenta, 
                  List<String> autores, double valorFijo, int valorMinimo, int valorInicial,
-                 Date fechaDeIngreso, boolean esVigente, String descripcion, Propietario propietario) {
+                 Date fechaDeIngreso, boolean esVigente, String descripcion, CompradorPropietario propietario) {
         this.idPieza = idPieza;
         this.titulo = titulo;
         this.anioCreacion = anioCreacion;
@@ -104,7 +103,7 @@ public class Pieza {
         return descripcion;
     }
 
-    public Propietario getPropietario() {
+    public CompradorPropietario getPropietario() {
         return propietario;
     }
 

@@ -76,7 +76,7 @@ public class ConsolaUsuarios {
 
 
         FileUtils.registerUser("CompradorPropietarioUsername", "CompradorPropietarioPassword", "comprador");
-        CompradorPropietario CompradorPropietario = new CompradorPropietario("3", "CompradorPropietario", "CompradorPropietarioUsername", "buyerOwnerPassword", 50000000, true);
+        CompradorPropietario CompradorPropietario = new CompradorPropietario("3", "CompradorPropietario", "CompradorPropietarioUsername", "buyerOwnerPassword", "1234JUAN", 50000000, true, null, null);
         UserManager.registerCompradorPropietario("CompradorPropietarioUsername", CompradorPropietario);
         System.out.println("Usuario registrado: " + CompradorPropietario);
     }

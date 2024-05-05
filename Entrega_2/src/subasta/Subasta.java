@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 import galeria.pieza.Pieza;
-import galeria.usuarios.Comprador;
+import galeria.usuarios.CompradorPropietario;
 import galeria.usuarios.Administrador;
 
 public class Subasta {
 	private Map<String, Pieza> piezasDisponibles;
 	private Map<String, List<Oferta>> ofertas;
-	private List<Comprador> compradores;
+	private List<CompradorPropietario> compradores;
 	
-	public Subasta(List<Pieza> piezas, List<Comprador> compradores) {
+	public Subasta(List<Pieza> piezas, List<CompradorPropietario> compradores) {
 		this.piezasDisponibles = new HashMap<String, Pieza>();
 		this.ofertas = new HashMap<String, List<Oferta>>();
 		this.compradores = compradores;
@@ -26,7 +26,7 @@ public class Subasta {
 		}
 	}
 	
-	public void crearOferta(Comprador comprador, String piezaId, int dinero) {
+	public void crearOferta(CompradorPropietario comprador, String piezaId, int dinero) {
 		Pieza pieza = this.piezasDisponibles.get(piezaId);
 		Oferta oferta = new Oferta(comprador, pieza, dinero);
 		this.ofertas.get(piezaId).add(oferta);
@@ -68,11 +68,11 @@ public class Subasta {
 		this.ofertas = ofertas;
 	}
 
-	public List<Comprador> getCompradores() {
+	public List<CompradorPropietario> getCompradores() {
 		return compradores;
 	}
 
-	public void setCompradores(List<Comprador> compradores) {
+	public void setCompradores(List<CompradorPropietario> compradores) {
 		this.compradores = compradores;
 	}
 }
