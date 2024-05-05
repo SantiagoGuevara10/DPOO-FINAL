@@ -11,7 +11,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
 	/**
      * Opciones que se mostrarán en el menú principal
      */
-    private final String[] opcionesMenuPrincipal = new String[]{"Ingresar como Empleado","Ingresar como cliente","Cargar inventario","Cargar usuarios","Salir" };
+    private final String[] opcionesMenuPrincipal = new String[]{"Ingresar como Empleado","Ingresar como cliente","Crear Usuario","Salir" };
 
     private InventarioGeneral inventario;
     
@@ -25,26 +25,35 @@ public class ConsolaPrincipal extends ConsolaBasica{
         int opcionSeleccionada = mostrarMenu( "Menú principal", opcionesMenuPrincipal );
         if( opcionSeleccionada == 1 )
         {
-            
+             
         }
         else if( opcionSeleccionada == 2 )
         {
-            ConsolaCrearGasolinera consolaCreacion = new ConsolaCrearGasolinera( );
-            laGasolinera = consolaCreacion.mostrarOpciones( );
+            
         }
         else if( opcionSeleccionada == 3 )
         {
-            cargarGasolinera( );
+            
         }
         else if( opcionSeleccionada == 4 )
         {
-            guardarGasolinera( );
+           
         }
         else if( opcionSeleccionada == 5 )
+        {
+            
+        }
+        else if( opcionSeleccionada == 6 )
         {
             System.out.println( "Saliendo ..." );
             System.exit( 0 );
         }
         mostrarMenuPrincipal( );
+    }
+    
+    public static void main( String[] args )
+    {
+        ConsolaPrincipal c = new ConsolaPrincipal( );
+        c.mostrarMenuPrincipal( );
     }
 }
