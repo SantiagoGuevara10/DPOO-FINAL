@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 
-import uniandes.dpoo.gasolinera.logica.Empleado;
-import uniandes.dpoo.gasolinera.logica.TipoGasolina;
+import galeria.inventarios.InventarioGeneral;
+import galeria.pieza.Pieza;
 
 /**
  * Esta es una clase abstracta que implementa métodos útiles para todas las consolas de la aplicación.
@@ -195,33 +196,75 @@ public abstract class ConsolaBasica {
         }
     }
     
-    private void mostrarInformacionBasica( int cantidadSurtidores, Collection<TipoGasolina> tiposGasolina )
+    private void mostrarInformacionBasicaEmpleado( InventarioGeneral inventarioTotal)
+    {
+    	System.out.println( "\n******************" );
+        System.out.println( "ESTADO ACTUAL" );
+        System.out.println( "La galería tiene actualmente  en bodega las siguientes piezas " );
+        Map<String, Pieza> bodega = inventarioTotal.getInventarioBodega();
+        for (String key : bodega.keySet()) {
+        	Pieza pieza = bodega.get(key);
+        	String nombre = pieza.getTitulo();
+        	String id = pieza.getIdPieza();
+        	
+        	System.out.println(nombre + "con el id:" + id);
+        }
+        System.out.println(	"\n");
+        
+        
+        System.out.println( "La galería tiene actualmente  en exhibición las siguientes piezas " );
+        Map<String, Pieza> exhibicion = inventarioTotal.getInventarioBodega();
+        for (String key : exhibicion.keySet()) {
+        	Pieza pieza = exhibicion.get(key);
+        	String nombre = pieza.getTitulo();
+        	String id = pieza.getIdPieza();
+        	System.out.println(nombre + "con el id:" + id);
+        }
+        
+        System.out.println(	"\n");
+        
+        double dinero = inventarioTotal.getInventarioDinero();
+        System.out.println( "La galería tiene actualmente " +dinero+ "pesos");
+        
+        
+        
+        
+    }
+    
+    private void mostrarInformacionBasicaComprador( InventarioGeneral inventarioTotal)
     {
         System.out.println( "\n******************" );
         System.out.println( "ESTADO ACTUAL" );
-        System.out.println( "La gasolinera tiene actualmente " + cantidadSurtidores + ( cantidadSurtidores > 1 ? " surtidores" : " surtidor" ) );
-        System.out.println( "Los tipos de gasolina disponible son:" );
-        for( TipoGasolina tipo : tiposGasolina )
-        {
-            String galonesDisponibles = String.format( "%.2f", tipo.getCantidadDisponible( ) );
-            System.out.println( "   - " + tipo.getNombre( ) + ": " + tipo.getPrecioPorGalon( ) + " por galón, " + galonesDisponibles + " galones disponibles" );
+        System.out.println( "La galería tiene actualmente  en bodega las siguientes piezas " );
+        Map<String, Pieza> bodega = inventarioTotal.getInventarioBodega();
+        for (String key : bodega.keySet()) {
+        	Pieza pieza = bodega.get(key);
+        	String nombre = pieza.getTitulo();
+        	String id = pieza.getIdPieza();
+        	double costo = pieza.getValorFijo();
+        	
+        	System.out.println(nombre + "con el id: " + id +" y cuesta " +costo);
         }
-    }
-
-    /**
-     * Muestra la información actual de la galeria, incluyendo los nombres de los empleados y la cantidad de dinero que tiene la galería
-     
-     */
-    protected void mostrarEstadoActual( int dinero, 
-    {
-        mostrarInformacionBasica( cantidadSurtidores, tiposGasolina );
-        System.out.println( "Los empleados son: " );
-        for( Empleado empleado : empleados )
-        {
-            System.out.println( "   - " + empleado.getNombre( ) + " tiene " + empleado.getCantidadDinero( ) + " pesos" );
+        System.out.println(	"\n");
+        
+        
+        System.out.println( "La galería tiene actualmente  en exhibición las siguientes piezas " );
+        Map<String, Pieza> exhibicion = inventarioTotal.getInventarioBodega();
+        for (String key : exhibicion.keySet()) {
+        	Pieza pieza = exhibicion.get(key);
+        	String nombre = pieza.getTitulo();
+        	String id = pieza.getIdPieza();
+        	double costo = pieza.getValorFijo();
+        	System.out.println(nombre + "con el id: " + id +" y cuesta " +costo);
         }
-        System.out.println( "******************\n" );
+        
+        System.out.println(	"\n");
+        
+        double dinero = inventarioTotal.getInventarioDinero();
+        System.out.println( "La galería tiene actualmente " +dinero+ "pesos");
+        
+        
+        
+        
     }
-
-
 }

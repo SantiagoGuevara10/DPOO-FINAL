@@ -12,7 +12,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
 	/**
      * Opciones que se mostrarán en el menú principal
      */
-    private final String[] opcionesMenuPrincipal = new String[]{"Crear nuevo inventario","Crear nuevo usuario", "Cargar inventario y usuarios de un archivo", "Guardar inventario y usuarios en un archivo", "Salir" };
+    private final String[] opcionesMenuPrincipal = new String[]{"Crear nuevo inventario","Crear nuevo usuario", "Cargar inventario de un archivo", "Guardar inventario en un archivo", "Salir" };
 
     private InventarioGeneral inventario;
     
