@@ -37,7 +37,7 @@ public class Administrador extends Empleado {
 	}
 
 	public void verificarUsuario(CompradorPropietario usuario) {
-		usuario.setEstaVerificado(true);ac
+		usuario.setEstaVerificado(true);
 	}
 	
 	
