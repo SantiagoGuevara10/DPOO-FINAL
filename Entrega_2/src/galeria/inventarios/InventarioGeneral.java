@@ -12,12 +12,12 @@ public class InventarioGeneral {
     private Map<String, Pieza> inventarioExhibido;
     private double inventarioDinero;
 
-    // Constructor sin argumentos
+    
     public InventarioGeneral() {
         inventarioBodega = new HashMap<>();
         inventarioPasado = new HashMap<>();
         inventarioExhibido = new HashMap<>();
-        inventarioDinero = 0; // Valor inicial por defecto
+        inventarioDinero = 0; 
     }
 	
 	
