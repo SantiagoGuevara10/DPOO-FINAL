@@ -10,15 +10,7 @@ public class Operador extends Empleado {
         super(idEmpleado, nombre, username, passwordHash, role);
         ofertasRegistradas = new HashMap<>();
     }
-
-    
-    public void registrarOferta(String idPieza, double montoOferta) {
-        ofertasRegistradas.put(idPieza, montoOferta);
-        
-    }
-
-    
-    public Map<String, Double> getOfertasRegistradas() {
-        return ofertasRegistradas;
-    }
 }
+
+    
+ 

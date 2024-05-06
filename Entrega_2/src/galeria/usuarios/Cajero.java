@@ -15,6 +15,9 @@ public class Cajero extends Empleado {
         super(idEmpleado, nombre, username, passwordHash, role);
     }
 
+    public List<String>  getTransacciones(){
+    	return transacciones;
+    }
     
     public void procesarPago(CompradorPropietario comprador, CompradorPropietario vendedor, double monto, Pieza pieza) {
         
@@ -30,23 +33,7 @@ public class Cajero extends Empleado {
             
         }
     }
+}
 
  
-    public void emitirRecibos() {
-        transacciones.forEach(transaccion -> {
-           
-            emitirRecibo(transaccion);
-        });
-     
-        transacciones.clear();
-    }
-
-   
-    private void emitirRecibo(String transaccion) {
-        try (FileWriter writer = new FileWriter("Recibo_" + transaccion.hashCode() + ".txt")) {
-            writer.write("Recibo de la " + transaccion);
-        } catch (IOException e) {
-            
-        }
-    }
-}
+    

@@ -57,5 +57,9 @@ public class Administrador extends Empleado {
 		ofertas.add(oferta);
 	}
 	
+	public List<Oferta> getOfertas() {
+		return ofertas;
+	}
+	
 		
 	}

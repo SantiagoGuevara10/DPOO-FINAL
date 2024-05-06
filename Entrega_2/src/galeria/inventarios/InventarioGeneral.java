@@ -1,25 +1,24 @@
 package galeria.inventarios;
 
+
+
 import java.util.HashMap;
 import java.util.Map;
 import galeria.pieza.Pieza;
+
 public class InventarioGeneral {
-	
-	
-	private Map<String,Pieza> inventarioPasado;
-	private Map<String,Pieza> inventarioBodega;
-	private Map<String,Pieza> inventarioExhibido;
-	private double inventarioDinero;
-	
-	
-	public InventarioGeneral(double inventarioDinero)
-	{
-		inventarioBodega = new HashMap<String, Pieza>( );
-		inventarioPasado =  new HashMap<String, Pieza>( );
-		inventarioExhibido = new HashMap<String, Pieza>( );
-		this.inventarioDinero = inventarioDinero;
-		
-	}
+    private Map<String, Pieza> inventarioPasado;
+    private Map<String, Pieza> inventarioBodega;
+    private Map<String, Pieza> inventarioExhibido;
+    private double inventarioDinero;
+
+    // Constructor sin argumentos
+    public InventarioGeneral() {
+        inventarioBodega = new HashMap<>();
+        inventarioPasado = new HashMap<>();
+        inventarioExhibido = new HashMap<>();
+        inventarioDinero = 0; // Valor inicial por defecto
+    }
 	
 	
 	public Map<String,Pieza> getInventarioPasado(){
@@ -89,6 +88,13 @@ public class InventarioGeneral {
 	public void setInventarioDinero(double inventarioDinero) {
 		this.inventarioDinero = inventarioDinero;
 	}
+	public Map<String, Pieza> getPiezasDisponibles() {
+	    Map<String, Pieza> piezasDisponibles = new HashMap<>();
+	    piezasDisponibles.putAll(inventarioBodega);  
+	    piezasDisponibles.putAll(inventarioExhibido);  
+	    return piezasDisponibles;
+	}
+	
 	
 	
 	

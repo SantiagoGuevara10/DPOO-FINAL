@@ -3,7 +3,7 @@ package galeria.usuarios;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.Arrays;
 public class FileUtils {
     private static final String USER_DATA_FILE = "userdata.txt";
 
@@ -12,11 +12,10 @@ public class FileUtils {
 
 
     public static void registerUser(String username, String password, String role) throws IOException {
-        String userData = password + "," + role; 
+        String userData = username + "," + password + "," + role;
         userCredentials.put(username, userData);
-        saveUserCredentials(); 
+        saveUserCredentials();
     }
-
 
     private static void saveUserCredentials() throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_DATA_FILE))) {
@@ -34,11 +33,10 @@ public class FileUtils {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 3) {
-                    String username = parts[0];
-                    String password = parts[1];
-                    String role = parts[2];
+                    String username = parts[0].trim();
+                    String password = parts[1].trim();
+                    String role = parts[2].trim();
                     userCredentials.put(username, username + "," + password + "," + role);
-                    
                 }
             }
         }
@@ -48,19 +46,24 @@ public class FileUtils {
     public static boolean verifyUser(String username, String password) {
         if (userCredentials.containsKey(username)) {
             String[] details = userCredentials.get(username).split(",");
-            boolean isAuthenticated = details[1].equals(password);
-            
-            return isAuthenticated;
+            System.out.println("Detalles almacenados: " + Arrays.toString(details)); 
+            if (details.length == 3) {
+                String storedPassword = details[1];
+                boolean isAuthenticated = storedPassword.equals(password);
+                System.out.println("Verificación: " + isAuthenticated); 
+                return isAuthenticated;
+            }
         }
-        
         return false;
     }
+
     public static String getRole(String username) {
-        String userDetails = userCredentials.get(username);
-        if (userDetails != null) {
-            String[] parts = userDetails.split(",");
-            if (parts.length > 2) {
-                return parts[2];
+        if (userCredentials.containsKey(username)) {
+            String[] parts = userCredentials.get(username).split(",");
+            if (parts.length == 3) {
+                String role = parts[2].trim();
+                System.out.println("Rol recuperado: '" + role + "'"); 
+                return role;
             }
         }
         return null;
@@ -80,11 +83,13 @@ public class FileUtils {
     private static boolean checkAuthorization(String role, String operation) {
     
         switch (role) {
-            case "administrador":
+            case "Administrador":
                 return true; 
-            case "cajero":
+            case "Cajero":
                 return operation.equals("ProcesandoPago");
-            case "operador":
+            case "CompradorPropietario":
+            	return true;
+            case "Operador":
                 return operation.equals("registrandoOferta");
             default:
                 return false;

@@ -16,8 +16,8 @@ public class ConsolaAdministrador extends ConsolaBasica {
     public ConsolaAdministrador(InventarioGeneral inventario) {
         this.inventario = inventario;
     }
-
-    protected void mostrarMenuPrincipal() throws IOException {
+    
+    protected void mostrarMenuPrincipal() throws IOException  {
         System.out.println("Bienvenido a la consola de Administración.");
         if (administrador == null) {
             System.out.println("1. Iniciar sesión");
@@ -45,10 +45,10 @@ public class ConsolaAdministrador extends ConsolaBasica {
         }
     }
 
-    private void iniciarSesion() throws IOException {
+    private void iniciarSesion() throws IOException   {
         String username = pedirCadenaAlUsuario("Ingrese su nombre de usuario:");
         String password = pedirCadenaAlUsuario("Ingrese su contraseña:");
-        // Assuming FileUtils has a method to get user role and verify credentials
+       
         if (FileUtils.verifyUser(username, password) && "administrador".equals(FileUtils.getRole(username))) {
             this.administrador = new Administrador(username, "Admin", username, password, "administrador", new LinkedList<>());
             System.out.println("Inicio de sesión exitoso.");
@@ -59,10 +59,10 @@ public class ConsolaAdministrador extends ConsolaBasica {
         }
     }
 
-    private void registrarNuevoUsuario() throws IOException {
+    private void registrarNuevoUsuario() throws IOException  {
         String username = pedirCadenaAlUsuario("Ingrese un nombre de usuario:");
         String password = pedirCadenaAlUsuario("Ingrese una contraseña:");
-        // Assuming FileUtils.registerUser handles the registration process
+        
         FileUtils.registerUser(username, password, "administrador");
         System.out.println("Usuario registrado exitosamente. Por favor inicie sesión.");
         mostrarMenuPrincipal();
@@ -118,7 +118,7 @@ public class ConsolaAdministrador extends ConsolaBasica {
 
     private void verificarUsuario() {
         String idUsuario = pedirCadenaAlUsuario("Ingrese el ID del usuario a verificar:");
-        // Implementation of buscarCompradorPorId needed
+        
         CompradorPropietario usuario = buscarCompradorPorId(idUsuario); 
         administrador.verificarUsuario(usuario);
         System.out.println("Usuario verificado correctamente.");
@@ -126,7 +126,7 @@ public class ConsolaAdministrador extends ConsolaBasica {
 
     private void registrarOferta() {
         String idPieza = pedirCadenaAlUsuario("Ingrese el ID de la pieza:");
-        Pieza pieza = inventario.getPiezaInventarioBodega(idPieza); // Assuming pieza might be in bodega
+        Pieza pieza = inventario.getPiezaInventarioBodega(idPieza); 
         if (pieza == null) pieza = inventario.getPiezaInventarioExhibido(idPieza);
         CompradorPropietario comprador = buscarCompradorPorId(pedirCadenaAlUsuario("Ingrese el ID del comprador:"));
         int dinero = pedirEnteroAlUsuario("Ingrese el monto de la oferta:");
@@ -135,9 +135,9 @@ public class ConsolaAdministrador extends ConsolaBasica {
         System.out.println("Oferta registrada exitosamente.");
     }
 
-    // Method to find a CompradorPropietario by ID
+    
     private CompradorPropietario buscarCompradorPorId(String id) {
-        // Mock implementation, needs real database or storage lookup
+        
         return new CompradorPropietario(id, "Nombre", "username", "passwordHash", "contactInfo", 0.0, true, new LinkedList<>(), new HashSet<>());
     }
 }

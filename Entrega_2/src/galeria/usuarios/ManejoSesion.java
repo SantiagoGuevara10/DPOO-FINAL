@@ -10,7 +10,7 @@ public class ManejoSesion {
     private static CompradorPropietario compradorPropietarioActual;
  
     public static void loginEmpleado(String username, String password) {
-        UsuariosRegistrados usuariosRegistrados = new UsuariosRegistrados();
+        UsuariosRegistrados usuariosRegistrados = new UsuariosRegistrados(null, null);
         if (FileUtils.verifyUser(username, password)) {
             for (Empleado empleado : usuariosRegistrados.getUsuariosEnPrograma()) {
                 if (empleado.getUsername().equals(username)) {
@@ -26,7 +26,7 @@ public class ManejoSesion {
     }
  
     public static void loginCompradorPropietario(String username, String password) {
-        UsuariosRegistrados usuariosRegistrados = new UsuariosRegistrados();
+        UsuariosRegistrados usuariosRegistrados = new UsuariosRegistrados(null, null);
         if (FileUtils.verifyUser(username, password)) {
             for (CompradorPropietario comprador : usuariosRegistrados.getCompradoresEnPrograma()) {
                 if (comprador.getUsername().equals(username)) {
