@@ -26,8 +26,6 @@ public class Cajero extends Empleado {
             comprador.setDinero(comprador.getDinero() - monto);
       
             vendedor.setDinero(vendedor.getDinero() + monto);
-           
-            pieza.setPropietario(comprador);
      
             transacciones.add("Pago de $" + monto + " realizado por " + comprador.getNombre() + " para la pieza " + pieza.getTitulo());
             

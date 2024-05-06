@@ -23,7 +23,6 @@ public class Pieza {
     private Date fechaDeIngreso;
     private boolean esVigente;
     private String descripcion;
-    private CompradorPropietario propietario;  
 
     public Pieza(String idPieza, String titulo, int anioCreacion, String lugarCreacion, 
                  String estadoPieza, boolean estaExhibida, boolean disponibleVenta, 
@@ -43,7 +42,6 @@ public class Pieza {
         this.fechaDeIngreso = fechaDeIngreso;
         this.esVigente = esVigente;
         this.descripcion = descripcion;
-        this.propietario = propietario;
     }
 
   
@@ -103,9 +101,7 @@ public class Pieza {
         return descripcion;
     }
 
-    public CompradorPropietario getPropietario() {
-        return propietario;
-    }
+   
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
@@ -117,8 +113,5 @@ public class Pieza {
 
     public void actualizarEstadoExhibicion(boolean estaExhibida) {
         this.estaExhibida = estaExhibida;
-    }
-    public void setPropietario(CompradorPropietario nuevoPropietario) {
-        this.propietario = nuevoPropietario;
     }
 }

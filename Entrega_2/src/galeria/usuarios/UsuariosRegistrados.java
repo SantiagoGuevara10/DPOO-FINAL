@@ -120,16 +120,15 @@ public class UsuariosRegistrados{
 	                int anioCreacion = pieza.getAnioCreacion();
 	                String lugarCreacion = pieza.getLugarCreacion();
 	                String estadoPieza = pieza.getEstadoPieza();
-	                boolean estaExhibida = pieza.ge
-	                boolean disponibleVenta;  
-	                List<String> autores;
-	                double valorFijo;
-	                int valorMinimo;
-	                int valorInicial;
-	                Date fechaDeIngreso;
-	                boolean esVigente;
-	                String descripcion;
-	                CompradorPropietario propietario; 
+	                boolean estaExhibida = pieza.getEstaExhibida();
+	                boolean disponibleVenta = pieza.getDisponibleVenta(); 
+	                List<String> autores = pieza.getAutor();
+	                double valorFijo = pieza.getValorFijo();
+	                int valorMinimo = pieza.getValorMinimo();
+	                int valorInicial = pieza.getValorInicial();
+	                Date fechaDeIngreso = pieza.getFechaDeIngreso();
+	                boolean esVigente = pieza.isEsVigente();
+	                String descripcion = pieza.getDescripcion();
 	            	
 	            	
 	            }

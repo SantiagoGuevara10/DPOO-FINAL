@@ -112,7 +112,6 @@ public class ConsolaAdministrador extends ConsolaBasica {
         Pieza pieza = inventario.getPiezaInventarioBodega(idPieza);
         if (pieza == null) pieza = inventario.getPiezaInventarioExhibido(idPieza);
         if (pieza == null) pieza = inventario.getPiezaInventarioPasado(idPieza);
-        administrador.devolverPieza(pieza, inventario, pieza.getPropietario());
         System.out.println("Pieza devuelta y actualizada en el inventario.");
     }
 

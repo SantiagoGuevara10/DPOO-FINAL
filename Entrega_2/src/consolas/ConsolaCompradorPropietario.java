@@ -125,7 +125,6 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
             double precio = pieza.getValorFijo();  
             if (compradorPropietario.getDinero() >= precio) {
                 compradorPropietario.setDinero(compradorPropietario.getDinero() - precio);
-                pieza.setPropietario(compradorPropietario);
                 compradorPropietario.getPiezas().add(pieza);
                 inventario.removeInventarioBodega(pieza.getIdPieza());  
                 System.out.println("Compra realizada exitosamente. Pieza agregada a tu colección.");
