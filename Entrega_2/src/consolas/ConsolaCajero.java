@@ -136,7 +136,7 @@ public class ConsolaCajero extends ConsolaBasica {
 
     private CompradorPropietario buscarCompradorPorId(String id) {
         
-        return new CompradorPropietario(id, "Nombre", "username", "passwordHash", "contactInfo", 0.0, true, new LinkedList<>(), new HashSet<>());
+        return new CompradorPropietario(id, "Nombre", "username", "passwordHash", "contactInfo", 0.0, true, new LinkedList<>(), new LinkedList<>());
     }
     
 }

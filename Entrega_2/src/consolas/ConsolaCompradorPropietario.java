@@ -121,7 +121,7 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
     private void realizarCompra() {
         String idPieza = pedirCadenaAlUsuario("Ingrese el ID de la pieza que desea comprar:");
         Pieza pieza = inventario.getPiezaInventarioBodega(idPieza);
-        if (pieza != null && pieza.isDisponibleVenta()) {
+        if (pieza != null && pieza.getDisponibleVenta()) {
             double precio = pieza.getValorFijo();  
             if (compradorPropietario.getDinero() >= precio) {
                 compradorPropietario.setDinero(compradorPropietario.getDinero() - precio);

@@ -50,7 +50,7 @@ public class ConsolaAdministrador extends ConsolaBasica {
         String password = pedirCadenaAlUsuario("Ingrese su contraseña:");
        
         if (FileUtils.verifyUser(username, password) && "administrador".equals(FileUtils.getRole(username))) {
-            this.administrador = new Administrador(username, "Admin", username, password, "administrador", new LinkedList<>());
+            this.administrador = new Administrador(username, "Admin", username, password, "administrador");
             System.out.println("Inicio de sesión exitoso.");
             mostrarOpcionesAdministrativas();
         } else {
@@ -131,13 +131,12 @@ public class ConsolaAdministrador extends ConsolaBasica {
         CompradorPropietario comprador = buscarCompradorPorId(pedirCadenaAlUsuario("Ingrese el ID del comprador:"));
         int dinero = pedirEnteroAlUsuario("Ingrese el monto de la oferta:");
         Oferta oferta = new Oferta(comprador, pieza, dinero);
-        administrador.agregarOferta(oferta);
         System.out.println("Oferta registrada exitosamente.");
     }
 
     
     private CompradorPropietario buscarCompradorPorId(String id) {
         
-        return new CompradorPropietario(id, "Nombre", "username", "passwordHash", "contactInfo", 0.0, true, new LinkedList<>(), new HashSet<>());
+        return new CompradorPropietario(id, "Nombre", "username", "passwordHash", "contactInfo", 0.0, true, new LinkedList<>(), new LinkedList<>());
     }
 }

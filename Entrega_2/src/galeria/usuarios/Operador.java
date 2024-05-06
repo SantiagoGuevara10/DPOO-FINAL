@@ -10,6 +10,17 @@ public class Operador extends Empleado {
         super(idEmpleado, nombre, username, passwordHash, role);
         ofertasRegistradas = new HashMap<>();
     }
+
+	public Map<String, Double> getOfertasRegistradas() {
+		return ofertasRegistradas;
+	}
+
+	public void setOfertasRegistradas(Map<String, Double> ofertasRegistradas) {
+		this.ofertasRegistradas = ofertasRegistradas;
+	}
+    
+    
+    
 }
 
     

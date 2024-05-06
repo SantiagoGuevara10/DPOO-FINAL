@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import galeria.usuarios.FileUtils;
 
 public class ConsolaPrincipal extends ConsolaBasica {
-    private final String[] opcionesMenuPrincipal = {"Ingresar como Empleado", "Ingresar como CompradorPropietario", "Crear Usuario", "Salir"};
     private InventarioGeneral inventario;
 
     public ConsolaPrincipal() {

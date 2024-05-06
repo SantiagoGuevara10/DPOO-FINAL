@@ -11,14 +11,14 @@ public class CompradorPropietario {
     protected String passwordHash;
     protected String informacionContacto;
     protected List<Pieza> piezas;
-    protected Set<Pieza> piezasFavoritas;
+    protected List<Pieza> piezasFavoritas;
     protected double dinero;
     protected boolean estaVerificado;
 
     
     public CompradorPropietario(String idUsuario, String nombre, String username,String passwordHash,
                                 String informacionContacto, double dinero,
-                                boolean estaVerificado, List<Pieza> piezas, Set<Pieza> piezasFavoritas) {
+                                boolean estaVerificado, List<Pieza> piezas, List<Pieza> piezasFavoritas) {
         
         this.idUsuario = idUsuario;
         this.nombre = nombre;
@@ -29,6 +29,7 @@ public class CompradorPropietario {
         this.estaVerificado = estaVerificado;
         this.piezas = piezas;
         this.piezasFavoritas = piezasFavoritas;
+        
 
     }
 
@@ -47,22 +48,24 @@ public class CompradorPropietario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public List<Pieza> getPiezas() {
-        return piezas;
-    }
-
-    public void setPiezas(Pieza pieza) {
+    
+    public void setPieza(Pieza pieza) {
     	this.piezas.add(pieza);
     }
-
-    public Set<Pieza> getPiezasFavoritas() {
-        return piezasFavoritas;
-    }
-
-    public void setPiezasFavoritas(Pieza pieza) {
+    
+    public void setPiezaFav(Pieza pieza) {
     	this.piezasFavoritas.add(pieza);
     }
+    
+    public List<Pieza> getPiezas(){
+    	return piezas;
+    }
+    
+    public List<Pieza> getPiezasFvoritas(){
+    	return piezasFavoritas;
+    }
+
+    
 
     public String getUsername() {
         return username;

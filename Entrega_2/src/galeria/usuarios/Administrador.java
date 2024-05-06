@@ -9,13 +9,13 @@ import galeria.inventarios.*;
 
 public class Administrador extends Empleado {
 	
-	private List<Oferta> ofertas;
 	
 	
 	
-    public Administrador(String idEmpleado, String nombre, String username, String passwordHash, String role, List<String> ofertas) {
+	
+    public Administrador(String idEmpleado, String nombre, String username, String passwordHash, String role) {
         super(idEmpleado, nombre, username, passwordHash, role);
-        ofertas = new LinkedList<>();
+        
     }
 
 	public void agregarPieza(Pieza pieza, InventarioGeneral inventario) {
@@ -34,13 +34,13 @@ public class Administrador extends Empleado {
 		if (pieza.getEstadoPieza() == "bodega") {
 		     inventario.removeInventarioBodega(pieza.getIdPieza());
 		     inventario.addInventarioPasado(pieza.getIdPieza(), pieza);
-		     propietario.setPiezas(pieza);
+		     propietario.setPieza(pieza);
 			
 		}
 		else if (pieza.getEstadoPieza() == "exhibida") {
 			inventario.removeInventarioExhibido(pieza.getIdPieza());
 			inventario.addInventarioPasado(pieza.getIdPieza(), pieza);
-			propietario.setPiezas(pieza);
+			propietario.setPiezaFav(pieza);
 			
 			
 		}
@@ -53,13 +53,7 @@ public class Administrador extends Empleado {
 
 	
 
-	public void agregarOferta(Oferta oferta){
-		ofertas.add(oferta);
-	}
 	
-	public List<Oferta> getOfertas() {
-		return ofertas;
-	}
 	
 		
 	}

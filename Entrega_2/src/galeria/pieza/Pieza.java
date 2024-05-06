@@ -67,11 +67,11 @@ public class Pieza {
         return estadoPieza;
     }
 
-    public boolean isEstaExhibida() {
+    public boolean getEstaExhibida() {
         return estaExhibida;
     }
 
-    public boolean isDisponibleVenta() {
+    public boolean getDisponibleVenta() {
         return disponibleVenta;
     }
 

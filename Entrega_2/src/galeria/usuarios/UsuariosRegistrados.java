@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -65,21 +66,29 @@ public class UsuariosRegistrados{
 	        	String id = empleado.getIdEmpleado();
 	        	
 	        	if (role == "Administrador") {
-	        		Administrador admin = (Administrador) usuariosEnPrograma.get(i);
-	        		
 	        		writer.println( "tipo:" + role + ":" + nombre + ":" + id + ":" + username + ":" + password);
-	        		
+	        
 	        	}
 	        	else if (role == "Operador") {
 	        		Operador operador = (Operador) usuariosEnPrograma.get(i);
-	        		
+	        		Map<String, Double> mapa = operador.getOfertasRegistradas();
 	        		writer.println( "tipo:" + role + ":" + nombre + ":" + id + ":" + username + ":" + password);
-	      
+	        		for (Map.Entry<String, Double> entry : mapa.entrySet()) {
+	        		    String clave = entry.getKey();
+	        		    Double valor = entry.getValue();
+	        		    writer.println("ofertas"+":"+id+":"+clave+":"+valor);
+	        		    
+	        		}
 	        	}
 	        	else if (role == "Cajero") {
 	        		Cajero cajero = (Cajero) usuariosEnPrograma.get(i);
-	        		
 	        		writer.println( "tipo:" + role + ":" + nombre + ":" + id + ":" + username + ":" + password);
+	        		List<String> transacciones = cajero.getTransacciones();
+	        		for(int j=0; i<transacciones.size();i++) {
+	        			String transaccion = transacciones.get(j);
+	        		    writer.println("ofertas"+":"+id+":"+transaccion);	
+	        		}
+	        		
 	        	}
 	        	
 	        	
@@ -87,7 +96,7 @@ public class UsuariosRegistrados{
 	        }
 	        writer.println("\n");
 	        writer.println("Información de los compradores");
-	       // idusuario:nombre:username:password:informacioncontacto:piezas:piezasfavoritas:dinero:estaverificado
+	       // idusuario:nombre:username:password:informacioncontacto:dinero:estaverificado
 	        for(int i=0;i<compradoresEnPrograma.size();i++ )
 	        {
 	        	CompradorPropietario comprador = compradoresEnPrograma.get(i);
@@ -97,13 +106,33 @@ public class UsuariosRegistrados{
 	            String password = comprador.getPasswordHash();
 	        	String informacionContacto = comprador.getInformacionContacto();
 	        	List<Pieza> piezas = comprador.getPiezas();
-	        	Set<Pieza> piezasFavoritas = comprador.getPiezasFavoritas();
+	        	List<Pieza> piezasFavoritas = comprador.getPiezasFvoritas();
 	        	double dinero = comprador.getDinero();
 	        	boolean estaVerificado = comprador.isEstaVerificado();
 	        	
 	        	
-	            writer.println("Comprador"+idUsuario+":"+nombre+":"+username+":"+password+":"+informacionContacto+":"+piezas+":"+piezasFavoritas+":"+dinero+":"+estaVerificado)
+	            writer.println("Comprador"+idUsuario+":"+nombre+":"+username+":"+password+":"+informacionContacto+":"+dinero+":"+estaVerificado)
 	            ;
+	            for(int j=0; j<piezas.size();j++) {
+	            	Pieza pieza = piezas.get(j);
+	            	String idPieza = pieza.getIdPieza();
+	                String titulo = pieza.getTitulo();
+	                int anioCreacion = pieza.getAnioCreacion();
+	                String lugarCreacion = pieza.getLugarCreacion();
+	                String estadoPieza = pieza.getEstadoPieza();
+	                boolean estaExhibida = pieza.ge
+	                boolean disponibleVenta;  
+	                List<String> autores;
+	                double valorFijo;
+	                int valorMinimo;
+	                int valorInicial;
+	                Date fechaDeIngreso;
+	                boolean esVigente;
+	                String descripcion;
+	                CompradorPropietario propietario; 
+	            	
+	            	
+	            }
 	        }
 
 	        
