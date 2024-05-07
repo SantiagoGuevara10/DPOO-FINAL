@@ -17,55 +17,9 @@ public class ConsolaAdministrador extends ConsolaBasica {
         this.inventario = inventario;
     }
     
-    protected void mostrarMenuPrincipal() throws IOException  {
-        System.out.println("Bienvenido a la consola de Administración.");
-        if (administrador == null) {
-            System.out.println("1. Iniciar sesión");
-            System.out.println("2. Registrarse");
-            System.out.println("3. Salir");
-            int opcion = pedirEnteroAlUsuario("Seleccione una opción:");
-            switch (opcion) {
-                case 1:
-                    iniciarSesion();
-                    break;
-                case 2:
-                    registrarNuevoUsuario();
-                    break;
-                case 3:
-                    System.out.println("Saliendo...");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Opción no válida.");
-                    mostrarMenuPrincipal();
-                    break;
-            }
-        } else {
-            mostrarOpcionesAdministrativas();
-        }
-    }
-
-    private void iniciarSesion() throws IOException   {
-        String username = pedirCadenaAlUsuario("Ingrese su nombre de usuario:");
-        String password = pedirCadenaAlUsuario("Ingrese su contraseña:");
-       
-        if (FileUtils.verifyUser(username, password) && "administrador".equals(FileUtils.getRole(username))) {
-            this.administrador = new Administrador(username, "Admin", username, password, "administrador");
-            System.out.println("Inicio de sesión exitoso.");
-            mostrarOpcionesAdministrativas();
-        } else {
-            System.out.println("Inicio de sesión fallido. Intente nuevamente.");
-            mostrarMenuPrincipal();
-        }
-    }
-
-    private void registrarNuevoUsuario() throws IOException  {
-        String username = pedirCadenaAlUsuario("Ingrese un nombre de usuario:");
-        String password = pedirCadenaAlUsuario("Ingrese una contraseña:");
-        
-        FileUtils.registerUser(username, password, "administrador");
-        System.out.println("Usuario registrado exitosamente. Por favor inicie sesión.");
-        mostrarMenuPrincipal();
+    protected void mostrarMenuPrincipal() throws IOException {
+        System.out.println("Bienvenido a la consola de Administración, ");
+        mostrarOpcionesAdministrativas();
     }
 
     private void mostrarOpcionesAdministrativas() {

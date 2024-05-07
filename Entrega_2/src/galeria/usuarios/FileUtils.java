@@ -46,11 +46,11 @@ public class FileUtils {
     public static boolean verifyUser(String username, String password) {
         if (userCredentials.containsKey(username)) {
             String[] details = userCredentials.get(username).split(",");
-            System.out.println("Detalles almacenados: " + Arrays.toString(details)); 
+            
             if (details.length == 3) {
                 String storedPassword = details[1];
                 boolean isAuthenticated = storedPassword.equals(password);
-                System.out.println("Verificación: " + isAuthenticated); 
+                
                 return isAuthenticated;
             }
         }
@@ -62,7 +62,7 @@ public class FileUtils {
             String[] parts = userCredentials.get(username).split(",");
             if (parts.length == 3) {
                 String role = parts[2].trim();
-                System.out.println("Rol recuperado: '" + role + "'"); 
+                
                 return role;
             }
         }

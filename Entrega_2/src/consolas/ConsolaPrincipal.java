@@ -127,6 +127,7 @@ public class ConsolaPrincipal extends ConsolaBasica {
 
         FileUtils.registerUser(username, password, tipoUsuario);
         System.out.println("Usuario registrado exitosamente. Por favor inicie sesión.");
+        lanzarConsolaUsuario(tipoUsuario);
     }
 
     public static void main(String[] args) throws IOException {

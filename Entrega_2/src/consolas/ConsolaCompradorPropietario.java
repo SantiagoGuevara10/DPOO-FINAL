@@ -16,55 +16,9 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
         this.inventario = inventario;
     }
 
-    protected void mostrarMenuPrincipal() throws IOException {
-        System.out.println("Bienvenido a la consola del Comprador Propietario.");
-        if (compradorPropietario == null) {
-            System.out.println("1. Iniciar sesión");
-            System.out.println("2. Registrarse");
-            System.out.println("3. Salir");
-            int opcion = pedirEnteroAlUsuario("Seleccione una opción:");
-            switch (opcion) {
-                case 1:
-                    iniciarSesion();
-                    break;
-                case 2:
-                    registrarNuevoUsuario();
-                    break;
-                case 3:
-                    System.out.println("Saliendo...");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Opción no válida.");
-                    mostrarMenuPrincipal();
-                    break;
-            }
-        } else {
-            mostrarOpcionesCompradorPropietario();
-        }
-    }
-
-    private void iniciarSesion() throws IOException {
-        String username = pedirCadenaAlUsuario("Ingrese su nombre de usuario:");
-        String password = pedirCadenaAlUsuario("Ingrese su contraseña:");
-
-        if (FileUtils.verifyUser(username, password) && "comprador_propietario".equals(FileUtils.getRole(username))) {
-            this.compradorPropietario = new CompradorPropietario(username, "Comprador", username, password, "comprador_propietario", 0.0, true, null, null);
-            System.out.println("Inicio de sesión exitoso.");
-            mostrarOpcionesCompradorPropietario();
-        } else {
-            System.out.println("Inicio de sesión fallido. Intente nuevamente.");
-            mostrarMenuPrincipal();
-        }
-    }
-
-    private void registrarNuevoUsuario() throws IOException {
-        String username = pedirCadenaAlUsuario("Ingrese un nombre de usuario:");
-        String password = pedirCadenaAlUsuario("Ingrese una contraseña:");
-
-        FileUtils.registerUser(username, password, "comprador_propietario");
-        System.out.println("Usuario registrado exitosamente como comprador propietario. Por favor inicie sesión.");
-        mostrarMenuPrincipal();
+    protected void mostrarMenuPrincipal() throws IOException  {
+        System.out.println("Bienvenido a la consola de cliente, ");
+        mostrarOpcionesCompradorPropietario();
     }
 
     private void mostrarOpcionesCompradorPropietario() throws IOException {
