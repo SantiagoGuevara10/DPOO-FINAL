@@ -27,7 +27,7 @@ public class Pieza {
     public Pieza(String idPieza, String titulo, int anioCreacion, String lugarCreacion, 
                  String estadoPieza, boolean estaExhibida, boolean disponibleVenta, 
                  List<String> autores, double valorFijo, int valorMinimo, int valorInicial,
-                 Date fechaDeIngreso, boolean esVigente, String descripcion, CompradorPropietario propietario) {
+                 Date fechaDeIngreso, boolean esVigente, String descripcion) {
         this.idPieza = idPieza;
         this.titulo = titulo;
         this.anioCreacion = anioCreacion;
@@ -99,6 +99,10 @@ public class Pieza {
 
     public String getDescripcion() {
         return descripcion;
+    }
+    
+    public void setAutores(String autor) {
+    	this.autores.add(autor);
     }
 
    

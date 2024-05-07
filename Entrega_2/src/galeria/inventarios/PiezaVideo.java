@@ -16,7 +16,7 @@ public class PiezaVideo extends Pieza {
                       Date fechaDeIngreso, boolean esVigente, String descripcion, CompradorPropietario propietario,
                       String calidad, int duracion) {
         super(idPieza, titulo, anioCreacion, lugarCreacion, estadoPieza, estaExhibida, disponibleVenta,
-              autores, valorFijo, valorMinimo, valorInicial, fechaDeIngreso, esVigente, descripcion, propietario);
+              autores, valorFijo, valorMinimo, valorInicial, fechaDeIngreso, esVigente, descripcion);
         this.calidad = calidad;
         this.duracion = duracion;
     }

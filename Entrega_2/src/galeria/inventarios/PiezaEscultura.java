@@ -16,7 +16,7 @@ public class PiezaEscultura extends Pieza {
                           Date fechaDeIngreso, boolean esVigente, String descripcion, CompradorPropietario propietario,
                           float peso, boolean usaElectricidad) {
         super(idPieza, titulo, anioCreacion, lugarCreacion, estadoPieza, estaExhibida, disponibleVenta,
-              autores, valorFijo, valorMinimo, valorInicial, fechaDeIngreso, esVigente, descripcion, propietario);
+              autores, valorFijo, valorMinimo, valorInicial, fechaDeIngreso, esVigente, descripcion);
         this.peso = peso;
         this.usaElectricidad = usaElectricidad;
     }

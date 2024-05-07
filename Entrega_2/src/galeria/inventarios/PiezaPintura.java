@@ -15,7 +15,7 @@ public class PiezaPintura extends Pieza {
                         Date fechaDeIngreso, boolean esVigente, String descripcion, CompradorPropietario propietario,
                         int peso, String tecnica) {
         super(idPieza, titulo, anioCreacion, lugarCreacion, estadoPieza, estaExhibida, disponibleVenta,
-              autores, valorFijo, valorMinimo, valorInicial, fechaDeIngreso, esVigente, descripcion, propietario);
+              autores, valorFijo, valorMinimo, valorInicial, fechaDeIngreso, esVigente, descripcion);
         this.peso = peso;
         this.tecnica = tecnica;
     }

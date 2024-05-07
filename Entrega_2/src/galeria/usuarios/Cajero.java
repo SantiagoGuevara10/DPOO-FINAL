@@ -9,14 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cajero extends Empleado {
-    private List<String> transacciones = new ArrayList<>();
+    private List<String> transacciones;
 
-    public Cajero(String idEmpleado, String nombre, String username, String passwordHash, String role) {
+    public Cajero(String idEmpleado, String nombre, String username, String passwordHash, String role, List<String> transacciones) {
         super(idEmpleado, nombre, username, passwordHash, role);
+        
+        
     }
 
     public List<String>  getTransacciones(){
     	return transacciones;
+    }
+    
+    public void setTransacciones(String transaccion) {
+    	this.transacciones.add(transaccion);
     }
     
     public void procesarPago(CompradorPropietario comprador, CompradorPropietario vendedor, double monto, Pieza pieza) {

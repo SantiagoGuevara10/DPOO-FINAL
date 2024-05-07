@@ -15,7 +15,7 @@ public class PiezaFotografia extends Pieza {
                            Date fechaDeIngreso, boolean esVigente, String descripcion, CompradorPropietario propietario,
                            boolean esDigital) {
         super(idPieza, titulo, anioCreacion, lugarCreacion, estadoPieza, estaExhibida, disponibleVenta,
-              autores, valorFijo, valorMinimo, valorInicial, fechaDeIngreso, esVigente, descripcion, propietario);
+              autores, valorFijo, valorMinimo, valorInicial, fechaDeIngreso, esVigente, descripcion);
         this.esDigital = esDigital;
     }
 	
