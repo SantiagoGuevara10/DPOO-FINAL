@@ -2,15 +2,23 @@ package consolas;
 
 import galeria.inventarios.InventarioGeneral;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+
 import galeria.usuarios.FileUtils;
+import galeria.usuarios.UsuariosRegistrados;
 
 public class ConsolaPrincipal extends ConsolaBasica {
     private InventarioGeneral inventario;
+    private UsuariosRegistrados usuariosDelPrograma;
 
-    public ConsolaPrincipal() {
+    public ConsolaPrincipal() throws NumberFormatException, FileNotFoundException, IOException, ParseException {
+    	File archivo = new File( "./datos/" + "Usuarios" );
         this.inventario = new InventarioGeneral(); 
+        this.usuariosDelPrograma= UsuariosRegistrados.cargarEstado(archivo);
     }
 
     private void mostrarMenuPrincipal() throws IOException {
@@ -118,19 +126,54 @@ public class ConsolaPrincipal extends ConsolaBasica {
     }
 
     private void registrarNuevoUsuario(BufferedReader reader) throws IOException {
-        System.out.print("Ingrese un nombre de usuario: ");
+    	String nombre = pedirCadenaAlUsuario("Ingrese su nombre Completo: ");
+        System.out.print("Ingrese un nombre para su usuario: ");
         String username = reader.readLine();
         System.out.print("Ingrese una contraseña: ");
         String password = reader.readLine();
-        System.out.print("Ingrese el tipo de usuario (Administrador, Operador, Cajero, CompradorPropietario): ");
-        String tipoUsuario = reader.readLine();
+        String[] opciones = new String[]{ "Administrador", "Operador", "Cajero", "Comprador o Propietario" };
+        
+
+        int opcionSeleccionada = mostrarMenu( "Ingrese el tipo de usuario", opciones );
+        String tipoUsuario = null;
+		if( opcionSeleccionada == 1 )
+        {
+			
+			
+			File archivo = new File( "./datos/" + "Usuarios" );
+            tipoUsuario = "Administrador";
+            ConsolaAdministrador cadmi = new ConsolaAdministrador(inventario);
+            cadmi.crearUsuario(usuariosDelPrograma);
+            usuariosDelPrograma.guardarUsuarios(archivo);
+            
+        }
+        else if( opcionSeleccionada == 2 )
+        {
+            tipoUsuario = "Operador";
+
+        }
+        else if( opcionSeleccionada == 3 )
+        {
+            tipoUsuario = "Cajero";
+        }
+        else if( opcionSeleccionada == 4 )
+        {
+            tipoUsuario = "CompradorPropietario";
+
+        }
+        
+        
+
+        
+
+        
 
         FileUtils.registerUser(username, password, tipoUsuario);
         System.out.println("Usuario registrado exitosamente. Por favor inicie sesión.");
         lanzarConsolaUsuario(tipoUsuario);
+    
     }
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, Exception, ParseException {
         new ConsolaPrincipal().mostrarMenuPrincipal();
     }
 }

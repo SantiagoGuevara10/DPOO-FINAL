@@ -21,13 +21,21 @@ public class UsuariosRegistrados{
 	private List<Empleado> usuariosEnPrograma;
 	private List<CompradorPropietario> compradoresEnPrograma;
 	
-	public UsuariosRegistrados(List<Empleado> usuariosEnPrograma,List<CompradorPropietario> compradoresEnPrograma ) {
+	public UsuariosRegistrados() {
 		usuariosEnPrograma = new LinkedList<>();
 		compradoresEnPrograma = new LinkedList<>();
 	}
 	
 	public void addUsuario(Empleado empleado) {
 		this.usuariosEnPrograma.add(empleado);
+	}
+	
+	public void setcompradores(List<CompradorPropietario> lista) {
+		this.compradoresEnPrograma = lista;
+	}
+	
+	public void setempleados(List<Empleado> lista) {
+		this.usuariosEnPrograma = lista;
 	}
 
 	public void removeUsuario(Empleado empleado) {
@@ -67,11 +75,11 @@ public class UsuariosRegistrados{
 	        	String password = empleado.getPasswordHash();
 	        	String id = empleado.getIdEmpleado();
 	        	
-	        	if (role == "Administrador") {
+	        	if (role.equals("Administrador")) {
 	        		writer.println( "tipo:" + role + ":" + nombre + ":" + id + ":" + username + ":" + password);
 	        
 	        	}
-	        	else if (role == "Operador") {
+	        	else if (role.equals("Operador")) {
 	        		Operador operador = (Operador) usuariosEnPrograma.get(i);
 	        		Map<String, Double> mapa = operador.getOfertasRegistradas();
 	        		writer.println( "tipo:" + role + ":" + nombre + ":" + id + ":" + username + ":" + password);
@@ -82,7 +90,7 @@ public class UsuariosRegistrados{
 	        		    
 	        		}
 	        	}
-	        	else if (role == "Cajero") {
+	        	else if (role.equals("Cajero")) {
 	        		Cajero cajero = (Cajero) usuariosEnPrograma.get(i);
 	        		writer.println( "tipo:" + role + ":" + nombre + ":" + id + ":" + username + ":" + password);
 	        		List<String> transacciones = cajero.getTransacciones();
@@ -93,10 +101,9 @@ public class UsuariosRegistrados{
 	        		
 	        	}
 	        	
-	        	
+
 	            
 	        }
-	        writer.println("\n");
 	        writer.println("Información de los compradores");
 	       // idusuario:nombre:username:password:informacioncontacto:dinero:estaverificado
 	        for(int i=0;i<compradoresEnPrograma.size();i++ )
@@ -175,6 +182,7 @@ public class UsuariosRegistrados{
 	            
 	        }
 
+
 	        
 	        writer.close( );
 	    }
@@ -198,14 +206,14 @@ public class UsuariosRegistrados{
 	                String username = partes[ 3 ];
 	                String password = partes[ 4 ];
 	                String id = partes[ 5 ];
-	                if (role == "Operador") {
+	                if (role.equals("Operador")) {
 	                	Operador operador = new Operador(id,nombre, username, password, role);
 	                	usuariosEnPrograma.add(operador);
 	                	
 	                	
 	                
 		        	}
-		        	else if (role == "Cajero") {
+		        	else if (role.equals("Cajero")) {
 		        	    List<String> trans = new LinkedList<>();
 		        		Cajero cajero = new Cajero(id,nombre, username, password, role, trans);
 		        		usuariosEnPrograma.add(cajero);
@@ -226,7 +234,7 @@ public class UsuariosRegistrados{
 	                
 	                for(int m=0; m<usuariosEnPrograma.size();m++) {
 	                	Empleado empleado = usuariosEnPrograma.get(m);
-	                	if (empleado.getRole() == "Cajero" && empleado.getIdEmpleado()==id  ) {
+	                	if (empleado.getRole().equals("Cajero") && empleado.getIdEmpleado().equals(id)) {
 	    	        		Cajero cajero = (Cajero) usuariosEnPrograma.get(m);
 	    	        		cajero.setTransacciones(transaccion);
 	                	}	
@@ -240,7 +248,7 @@ public class UsuariosRegistrados{
 	                
 	                for(int m=0; m<usuariosEnPrograma.size();m++) {
 	                	Empleado empleado = usuariosEnPrograma.get(m);
-	                	if (empleado.getRole() == "Operador" && empleado.getIdEmpleado()==id  ) {
+	                	if (empleado.getRole().equals("Operador") && empleado.getIdEmpleado().equals(id)) {
 	    	        		Operador operador = (Operador) usuariosEnPrograma.get(m);
 	    	        		operador.getOfertasRegistradas().put(key, valor);
 	    	        		}} 
@@ -287,7 +295,7 @@ public class UsuariosRegistrados{
 	                
 	                for(int m=0; m<compradoresEnPrograma.size();m++) {
 	                	CompradorPropietario comprador = compradoresEnPrograma.get(m);
-	                	if (comprador.getIdUsuario()==id  ) {
+	                	if (comprador.getIdUsuario().equals(id) ) {
 	                		comprador.getPiezas().add(pieza);
 	    	        		}}
 	            	
@@ -300,10 +308,10 @@ public class UsuariosRegistrados{
 	            	String autor = partes[3];
 	            	for(int m=0; m<compradoresEnPrograma.size();m++) {
 	                	CompradorPropietario comprador = compradoresEnPrograma.get(m);
-	                	if (comprador.getIdUsuario()==idUsuario  ) {
+	                	if (comprador.getIdUsuario().equals(idUsuario)) {
 	                		List<Pieza> piezas = comprador.getPiezas();
 	                		for(int l=0; l<piezas.size();l++) {
-	                			if (piezas.get(l).getIdPieza()==idPieza) {
+	                			if (piezas.get(l).getIdPieza().equals(idPieza)) {
 	                				piezas.get(l).setAutores(autor);
 	                			}
 	                		}
@@ -367,7 +375,10 @@ public class UsuariosRegistrados{
 	            }        br.close( );
 
 	            
-	            UsuariosRegistrados usuariosprograma = new UsuariosRegistrados(usuariosEnPrograma, compradoresEnPrograma);
+	            UsuariosRegistrados usuariosprograma = new UsuariosRegistrados();
+	            usuariosprograma.setcompradores(compradoresEnPrograma);
+	            usuariosprograma.setempleados(usuariosEnPrograma);
+	            
 	            
 	           return usuariosprograma; 
 	    }

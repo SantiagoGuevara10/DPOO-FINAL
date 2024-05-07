@@ -5,6 +5,7 @@ import galeria.pieza.Pieza;
 import galeria.inventarios.InventarioGeneral;
 import subasta.Oferta;
 import java.util.LinkedList;
+import java.util.Random;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
@@ -85,6 +86,19 @@ public class ConsolaAdministrador extends ConsolaBasica {
         int dinero = pedirEnteroAlUsuario("Ingrese el monto de la oferta:");
         Oferta oferta = new Oferta(comprador, pieza, dinero);
         System.out.println("Oferta registrada exitosamente.");
+    }
+    
+    public void crearUsuario(UsuariosRegistrados users) {
+    	String idEmpleado = "20";
+    	String nombre = pedirCadenaAlUsuario("Ingrese su nombre completo: ");
+    	String username = pedirCadenaAlUsuario("Ingrese un usuario de su preferencia");
+    	String passwordHash = pedirCadenaAlUsuario("Ingrese una clave de su preferencia");
+    	String role = "Administrador";
+    	Administrador admin = new Administrador(idEmpleado, nombre, username, passwordHash, role);
+    	users.addUsuario(admin);
+    	
+            
+    	
     }
 
     
