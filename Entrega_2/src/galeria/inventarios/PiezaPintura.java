@@ -12,8 +12,7 @@ public class PiezaPintura extends Pieza {
     public PiezaPintura(String idPieza, String titulo, int anioCreacion, String lugarCreacion,
                         String estadoPieza, boolean estaExhibida, boolean disponibleVenta,
                         List<String> autores, double valorFijo, int valorMinimo, int valorInicial,
-                        Date fechaDeIngreso, boolean esVigente, String descripcion, CompradorPropietario propietario,
-                        int peso, String tecnica) {
+                        Date fechaDeIngreso, boolean esVigente, String descripcion,int peso, String tecnica) {
         super(idPieza, titulo, anioCreacion, lugarCreacion, estadoPieza, estaExhibida, disponibleVenta,
               autores, valorFijo, valorMinimo, valorInicial, fechaDeIngreso, esVigente, descripcion);
         this.peso = peso;

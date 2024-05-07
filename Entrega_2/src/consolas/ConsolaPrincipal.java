@@ -149,7 +149,12 @@ public class ConsolaPrincipal extends ConsolaBasica {
         }
         else if( opcionSeleccionada == 2 )
         {
-            tipoUsuario = "Operador";
+        	File archivo = new File( "./datos/" + "Usuarios" );
+        	tipoUsuario = "Operador";
+            ConsolaAdministrador cadmi = new ConsolaAdministrador(inventario);
+            cadmi.crearUsuario(usuariosDelPrograma);
+            usuariosDelPrograma.guardarUsuarios(archivo);
+            
 
         }
         else if( opcionSeleccionada == 3 )

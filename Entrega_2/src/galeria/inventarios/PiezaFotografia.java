@@ -12,7 +12,7 @@ public class PiezaFotografia extends Pieza {
     public PiezaFotografia(String idPieza, String titulo, int anioCreacion, String lugarCreacion,
                            String estadoPieza, boolean estaExhibida, boolean disponibleVenta,
                            List<String> autores, double valorFijo, int valorMinimo, int valorInicial,
-                           Date fechaDeIngreso, boolean esVigente, String descripcion, CompradorPropietario propietario,
+                           Date fechaDeIngreso, boolean esVigente, String descripcion,
                            boolean esDigital) {
         super(idPieza, titulo, anioCreacion, lugarCreacion, estadoPieza, estaExhibida, disponibleVenta,
               autores, valorFijo, valorMinimo, valorInicial, fechaDeIngreso, esVigente, descripcion);

@@ -2,6 +2,9 @@ package galeria.inventarios;
 
 
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import galeria.pieza.Pieza;
@@ -95,9 +98,28 @@ public class InventarioGeneral {
 	    return piezasDisponibles;
 	}
 	
+	 public void guardarUsuarios( File archivo ) throws IOException
+	    {
+	        PrintWriter writer = new PrintWriter( archivo );
+
+	        writer.println("Información del inventario");
+	        
+    		for (Map.Entry<String, Pieza> entry : inventarioExhibido.entrySet()) {
+    			String idPieza = entry.getKey();
+    		    Pieza pieza = entry.getValue();
+    		    
+        		writer.println( "Exhibido:" );
+
+    		    
+    		    
+    			
+    		}
+
+
+	        
 	
 	
 	
-	
+	    }	
 
 }

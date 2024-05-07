@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import galeria.inventarios.PiezaEscultura;
+import galeria.inventarios.PiezaFotografia;
+import galeria.inventarios.PiezaPintura;
+import galeria.inventarios.PiezaVideo;
 import galeria.pieza.Pieza;
 import subasta.Oferta;
 
@@ -140,7 +144,39 @@ public class UsuariosRegistrados{
 	                boolean esVigente = pieza.isEsVigente();
 	                String descripcion = pieza.getDescripcion();
 	                
-	                writer.println("Pieza"+":"+idUsuario+":"+idPieza+":"+titulo+":"+anioCreacion+":"+lugarCreacion+":"+estadoPieza+":"+estaExhibida+":"+disponibleVenta+":"+valorFijo+":"+valorMinimo+":"+valorInicial+":"+fechaString+":"+esVigente+":"+descripcion);
+	                if(descripcion.equals("Escultura")) {
+	                	PiezaEscultura escultura = (PiezaEscultura) piezas.get(j);
+	                	float peso = escultura.getPeso();
+	                    boolean usaElectricidad = escultura.getUsaElectricidad();
+		                writer.println("Escultura"+":"+idUsuario+":"+idPieza+":"+titulo+":"+anioCreacion+":"+lugarCreacion+":"+estadoPieza+":"+estaExhibida+":"+disponibleVenta+":"+valorFijo+":"+valorMinimo+":"+valorInicial+":"+fechaString+":"+esVigente+":"+descripcion+":"+peso+":"+usaElectricidad);
+
+	                }
+	                else if(descripcion.equals("Fotografia")) {
+	                	PiezaFotografia fotografia = (PiezaFotografia) piezas.get(j);
+	                    boolean esDigital = fotografia.getEsDigital();
+                        writer.println("Fotografia"+":"+idUsuario+":"+idPieza+":"+titulo+":"+anioCreacion+":"+lugarCreacion+":"+estadoPieza+":"+estaExhibida+":"+disponibleVenta+":"+valorFijo+":"+valorMinimo+":"+valorInicial+":"+fechaString+":"+esVigente+":"+descripcion+":"+esDigital);
+
+	                	
+	                }
+                    else if(descripcion.equals("Pintura")) {
+                    	PiezaPintura pintura = (PiezaPintura) piezas.get(j);
+                    	int peso = pintura.getPeso();
+                        String tecnica = pintura.getTecnica();
+
+                        writer.println("Pintura"+":"+idUsuario+":"+idPieza+":"+titulo+":"+anioCreacion+":"+lugarCreacion+":"+estadoPieza+":"+estaExhibida+":"+disponibleVenta+":"+valorFijo+":"+valorMinimo+":"+valorInicial+":"+fechaString+":"+esVigente+":"+descripcion+":"+peso+":"+tecnica);
+
+	                	
+	                }
+                     else if(descripcion.equals("Video")) {
+                     	PiezaVideo video = (PiezaVideo) piezas.get(j);
+                        String calidad = video.getCalidad();
+                    	int duracion = video.getDuracion();
+
+                        writer.println("Video"+":"+idUsuario+":"+idPieza+":"+titulo+":"+anioCreacion+":"+lugarCreacion+":"+estadoPieza+":"+estaExhibida+":"+disponibleVenta+":"+valorFijo+":"+valorMinimo+":"+valorInicial+":"+fechaString+":"+esVigente+":"+descripcion+":"+calidad+":"+duracion);
+     	                	
+	                	
+	                }
+	                	
 	                
 	                for(int k=0; k<autores.size();k++) {
 	                	String autor = autores.get(k);
@@ -169,8 +205,40 @@ public class UsuariosRegistrados{
 	                boolean esVigente = pieza.isEsVigente();
 	                String descripcion = pieza.getDescripcion();
 	                
-	                writer.println("PiezaFav"+":"+idUsuario+":"+idPieza+":"+titulo+":"+anioCreacion+":"+lugarCreacion+":"+estadoPieza+":"+estaExhibida+":"+disponibleVenta+":"+valorFijo+":"+valorMinimo+":"+valorInicial+":"+fechaString+":"+esVigente+":"+descripcion);
-	                
+	                if(descripcion.equals("Escultura")) {
+	                	PiezaEscultura escultura = (PiezaEscultura) piezasFavoritas.get(j);
+	                	float peso = escultura.getPeso();
+	                    boolean usaElectricidad = escultura.getUsaElectricidad();
+		                writer.println("EsculturaFav"+":"+idUsuario+":"+idPieza+":"+titulo+":"+anioCreacion+":"+lugarCreacion+":"+estadoPieza+":"+estaExhibida+":"+disponibleVenta+":"+valorFijo+":"+valorMinimo+":"+valorInicial+":"+fechaString+":"+esVigente+":"+descripcion+":"+peso+":"+usaElectricidad);
+
+	                }
+	                else if(descripcion.equals("Fotografia")) {
+	                	PiezaFotografia fotografia = (PiezaFotografia) piezasFavoritas.get(j);
+	                    boolean esDigital = fotografia.getEsDigital();
+                        writer.println("FotografiaFav"+":"+idUsuario+":"+idPieza+":"+titulo+":"+anioCreacion+":"+lugarCreacion+":"+estadoPieza+":"+estaExhibida+":"+disponibleVenta+":"+valorFijo+":"+valorMinimo+":"+valorInicial+":"+fechaString+":"+esVigente+":"+descripcion+":"+esDigital);
+
+	                	
+	                }
+                    else if(descripcion.equals("Pintura")) {
+                    	PiezaPintura pintura = (PiezaPintura) piezasFavoritas.get(j);
+                    	int peso = pintura.getPeso();
+                        String tecnica = pintura.getTecnica();
+
+                        writer.println("PinturaFav"+":"+idUsuario+":"+idPieza+":"+titulo+":"+anioCreacion+":"+lugarCreacion+":"+estadoPieza+":"+estaExhibida+":"+disponibleVenta+":"+valorFijo+":"+valorMinimo+":"+valorInicial+":"+fechaString+":"+esVigente+":"+descripcion+":"+peso+":"+tecnica);
+
+	                	
+	                }
+                     else if(descripcion.equals("Video")) {
+                     	PiezaVideo video = (PiezaVideo) piezasFavoritas.get(j);
+                        String calidad = video.getCalidad();
+                    	int duracion = video.getDuracion();
+
+                        writer.println("VideoFav"+":"+idUsuario+":"+idPieza+":"+titulo+":"+anioCreacion+":"+lugarCreacion+":"+estadoPieza+":"+estaExhibida+":"+disponibleVenta+":"+valorFijo+":"+valorMinimo+":"+valorInicial+":"+fechaString+":"+esVigente+":"+descripcion+":"+calidad+":"+duracion);
+     	                	
+	                	
+	                }
+
+	                	                
 	                for(int k=0; k<autores.size();k++) {
 	                	String autor = autores.get(k);
 	                	writer.println("AutorFav"+":"+idUsuario+":"+idPieza+":"+autor);
@@ -271,9 +339,8 @@ public class UsuariosRegistrados{
 	                compradoresEnPrograma.add(comprador);
 	            }
 	            
-	            else if (partes[ 0 ].equals("Pieza")) {
-	            	
-	                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	            else if(partes[0].equals("Escultura")) {
+	            	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	            	Date fecha = formato.parse(partes[12]);
 	            	String id= partes[1];
 	            	String idPieza = partes[2];
@@ -289,10 +356,10 @@ public class UsuariosRegistrados{
 	                int valorInicial = Integer.parseInt(partes[11]);
 	                boolean esVigente = Boolean.parseBoolean(partes[13]);
 	                String descripcion = partes[14];
-	                
-	                
-	                Pieza pieza = new Pieza(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion);
-	                
+	                int peso = Integer.parseInt(partes[15]);
+	                boolean usaElectricidad = Boolean.parseBoolean(partes[16]);
+	                PiezaEscultura pieza = new PiezaEscultura(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, peso, usaElectricidad);
+
 	                for(int m=0; m<compradoresEnPrograma.size();m++) {
 	                	CompradorPropietario comprador = compradoresEnPrograma.get(m);
 	                	if (comprador.getIdUsuario().equals(id) ) {
@@ -300,7 +367,95 @@ public class UsuariosRegistrados{
 	    	        		}}
 	            	
 	            }
-	            
+                else if(partes[0].equals("Fotografia")) {
+                	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	            	Date fecha = formato.parse(partes[12]);
+	            	String id= partes[1];
+	            	String idPieza = partes[2];
+	                String titulo =  partes[3];
+	                int anioCreacion = Integer.parseInt(partes[4]);
+	                String lugarCreacion = partes[5];
+	                String estadoPieza = partes[6];
+	                boolean estaExhibida = Boolean.parseBoolean(partes[7]);
+	                boolean disponibleVenta = Boolean.parseBoolean(partes[8]);
+	                List<String> autores = new LinkedList<>();
+	                double valorFijo = Double.parseDouble(partes[9]);
+	                int valorMinimo = Integer.parseInt(partes[10]);
+	                int valorInicial = Integer.parseInt(partes[11]);
+	                boolean esVigente = Boolean.parseBoolean(partes[13]);
+	                String descripcion = partes[14];
+	                boolean esDigital = Boolean.parseBoolean(partes[15]);
+	                PiezaFotografia pieza = new PiezaFotografia(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, esDigital);
+
+	                for(int m=0; m<compradoresEnPrograma.size();m++) {
+	                	CompradorPropietario comprador = compradoresEnPrograma.get(m);
+	                	if (comprador.getIdUsuario().equals(id) ) {
+	                		comprador.getPiezas().add(pieza);
+	    	        		}}
+                	
+                	
+                }
+                else if(partes[0].equals("Pintura")) {
+                	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	            	Date fecha = formato.parse(partes[12]);
+	            	String id= partes[1];
+	            	String idPieza = partes[2];
+	                String titulo =  partes[3];
+	                int anioCreacion = Integer.parseInt(partes[4]);
+	                String lugarCreacion = partes[5];
+	                String estadoPieza = partes[6];
+	                boolean estaExhibida = Boolean.parseBoolean(partes[7]);
+	                boolean disponibleVenta = Boolean.parseBoolean(partes[8]);
+	                List<String> autores = new LinkedList<>();
+	                double valorFijo = Double.parseDouble(partes[9]);
+	                int valorMinimo = Integer.parseInt(partes[10]);
+	                int valorInicial = Integer.parseInt(partes[11]);
+	                boolean esVigente = Boolean.parseBoolean(partes[13]);
+	                String descripcion = partes[14];
+	                int peso = Integer.parseInt(partes[15]);
+	                String tecnica = partes[16];
+	                PiezaPintura pieza = new PiezaPintura(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, peso, tecnica);
+
+	                for(int m=0; m<compradoresEnPrograma.size();m++) {
+	                	CompradorPropietario comprador = compradoresEnPrograma.get(m);
+	                	if (comprador.getIdUsuario().equals(id) ) {
+	                		comprador.getPiezas().add(pieza);
+	    	        		}}
+                	
+                	
+                }
+                 else if(partes[0].equals("Video")) {
+                 	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+ 	            	Date fecha = formato.parse(partes[12]);
+ 	            	String id= partes[1];
+ 	            	String idPieza = partes[2];
+ 	                String titulo =  partes[3];
+ 	                int anioCreacion = Integer.parseInt(partes[4]);
+ 	                String lugarCreacion = partes[5];
+ 	                String estadoPieza = partes[6];
+ 	                boolean estaExhibida = Boolean.parseBoolean(partes[7]);
+ 	                boolean disponibleVenta = Boolean.parseBoolean(partes[8]);
+ 	                List<String> autores = new LinkedList<>();
+ 	                double valorFijo = Double.parseDouble(partes[9]);
+ 	                int valorMinimo = Integer.parseInt(partes[10]);
+ 	                int valorInicial = Integer.parseInt(partes[11]);
+ 	                boolean esVigente = Boolean.parseBoolean(partes[13]);
+ 	                String descripcion = partes[14];
+ 	                String calidad = partes[15];
+ 	                int duracion = Integer.parseInt(partes[16]);
+ 	                PiezaVideo pieza = new PiezaVideo(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, calidad, duracion);
+
+ 	                for(int m=0; m<compradoresEnPrograma.size();m++) {
+ 	                	CompradorPropietario comprador = compradoresEnPrograma.get(m);
+ 	                	if (comprador.getIdUsuario().equals(id) ) {
+ 	                		comprador.getPiezas().add(pieza);
+ 	    	        		}}
+                 	
+                 	
+                 
+                	 
+                	 
+                 }
 	            
 	            else if (partes[ 0 ].equals("Autor")) {
 	            	String idUsuario = partes[1];
@@ -321,10 +476,8 @@ public class UsuariosRegistrados{
 	            	
 	            }
 	            
-	            
-	            else if (partes[ 0 ].equals("PiezaFav")) {
-	            	
-	                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	            else if(partes[0].equals("EsculturaFav")) {
+	            	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	            	Date fecha = formato.parse(partes[12]);
 	            	String id= partes[1];
 	            	String idPieza = partes[2];
@@ -340,18 +493,106 @@ public class UsuariosRegistrados{
 	                int valorInicial = Integer.parseInt(partes[11]);
 	                boolean esVigente = Boolean.parseBoolean(partes[13]);
 	                String descripcion = partes[14];
-	                
-	                
-	                Pieza pieza = new Pieza(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion);
-	                
+	                int peso = Integer.parseInt(partes[15]);
+	                boolean usaElectricidad = Boolean.parseBoolean(partes[16]);
+	                PiezaEscultura pieza = new PiezaEscultura(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, peso, usaElectricidad);
+
 	                for(int m=0; m<compradoresEnPrograma.size();m++) {
-	                	CompradorPropietario comprador = compradoresEnPrograma.get(m);
-	                	if (comprador.getIdUsuario()==id  ) {
-	                		comprador.getPiezasFvoritas().add(pieza);
-	    	        		}}
+ 	                	CompradorPropietario comprador = compradoresEnPrograma.get(m);
+ 	                	if (comprador.getIdUsuario().equals(id) ) {
+ 	                		comprador.getPiezasFvoritas().add(pieza);
 	            	
-	            }
+	            }}}
+                else if(partes[0].equals("FotografiaFav")) {
+                	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	            	Date fecha = formato.parse(partes[12]);
+	            	String id= partes[1];
+	            	String idPieza = partes[2];
+	                String titulo =  partes[3];
+	                int anioCreacion = Integer.parseInt(partes[4]);
+	                String lugarCreacion = partes[5];
+	                String estadoPieza = partes[6];
+	                boolean estaExhibida = Boolean.parseBoolean(partes[7]);
+	                boolean disponibleVenta = Boolean.parseBoolean(partes[8]);
+	                List<String> autores = new LinkedList<>();
+	                double valorFijo = Double.parseDouble(partes[9]);
+	                int valorMinimo = Integer.parseInt(partes[10]);
+	                int valorInicial = Integer.parseInt(partes[11]);
+	                boolean esVigente = Boolean.parseBoolean(partes[13]);
+	                String descripcion = partes[14];
+	                boolean esDigital = Boolean.parseBoolean(partes[15]);
+	                PiezaFotografia pieza = new PiezaFotografia(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, esDigital);
+
+	                for(int m=0; m<compradoresEnPrograma.size();m++) {
+ 	                	CompradorPropietario comprador = compradoresEnPrograma.get(m);
+ 	                	if (comprador.getIdUsuario().equals(id) ) {
+ 	                		comprador.getPiezasFvoritas().add(pieza);
+                	
+                	
+ 	                	}}}
+                else if(partes[0].equals("PinturaFav")) {
+                	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	            	Date fecha = formato.parse(partes[12]);
+	            	String id= partes[1];
+	            	String idPieza = partes[2];
+	                String titulo =  partes[3];
+	                int anioCreacion = Integer.parseInt(partes[4]);
+	                String lugarCreacion = partes[5];
+	                String estadoPieza = partes[6];
+	                boolean estaExhibida = Boolean.parseBoolean(partes[7]);
+	                boolean disponibleVenta = Boolean.parseBoolean(partes[8]);
+	                List<String> autores = new LinkedList<>();
+	                double valorFijo = Double.parseDouble(partes[9]);
+	                int valorMinimo = Integer.parseInt(partes[10]);
+	                int valorInicial = Integer.parseInt(partes[11]);
+	                boolean esVigente = Boolean.parseBoolean(partes[13]);
+	                String descripcion = partes[14];
+	                int peso = Integer.parseInt(partes[15]);
+	                String tecnica = partes[16];
+	                PiezaPintura pieza = new PiezaPintura(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, peso, tecnica);
+
+	                for(int m=0; m<compradoresEnPrograma.size();m++) {
+ 	                	CompradorPropietario comprador = compradoresEnPrograma.get(m);
+ 	                	if (comprador.getIdUsuario().equals(id) ) {
+ 	                		comprador.getPiezasFvoritas().add(pieza);
+                	
+                	
+ 	                	}}}
+                 else if(partes[0].equals("VideoFav")) {
+                 	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+ 	            	Date fecha = formato.parse(partes[12]);
+ 	            	String id= partes[1];
+ 	            	String idPieza = partes[2];
+ 	                String titulo =  partes[3];
+ 	                int anioCreacion = Integer.parseInt(partes[4]);
+ 	                String lugarCreacion = partes[5];
+ 	                String estadoPieza = partes[6];
+ 	                boolean estaExhibida = Boolean.parseBoolean(partes[7]);
+ 	                boolean disponibleVenta = Boolean.parseBoolean(partes[8]);
+ 	                List<String> autores = new LinkedList<>();
+ 	                double valorFijo = Double.parseDouble(partes[9]);
+ 	                int valorMinimo = Integer.parseInt(partes[10]);
+ 	                int valorInicial = Integer.parseInt(partes[11]);
+ 	                boolean esVigente = Boolean.parseBoolean(partes[13]);
+ 	                String descripcion = partes[14];
+ 	                String calidad = partes[15];
+ 	                int duracion = Integer.parseInt(partes[16]);
+ 	                PiezaVideo pieza = new PiezaVideo(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, calidad, duracion);
+
+ 	                for(int m=0; m<compradoresEnPrograma.size();m++) {
+ 	                	CompradorPropietario comprador = compradoresEnPrograma.get(m);
+ 	                	if (comprador.getIdUsuario().equals(id) ) {
+ 	                		comprador.getPiezasFvoritas().add(pieza);
+ 	    	        
+ 	                	}}
+                 	
+                 
+                	 
+                	 
+                 }
 	            
+	            
+	                  
 	            
 	            else if (partes[ 0 ].equals("AutorFav")) {
 	            	String idUsuario = partes[1];
