@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -115,6 +116,7 @@ public class UsuariosRegistrados{
 	            ;
 	            for(int j=0; j<piezas.size();j++) {
 	            	Pieza pieza = piezas.get(j);
+	                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	            	String idPieza = pieza.getIdPieza();
 	                String titulo = pieza.getTitulo();
 	                int anioCreacion = pieza.getAnioCreacion();
@@ -126,9 +128,16 @@ public class UsuariosRegistrados{
 	                double valorFijo = pieza.getValorFijo();
 	                int valorMinimo = pieza.getValorMinimo();
 	                int valorInicial = pieza.getValorInicial();
-	                Date fechaDeIngreso = pieza.getFechaDeIngreso();
+	                String fechaString = formato.format(pieza.getFechaDeIngreso());
 	                boolean esVigente = pieza.isEsVigente();
 	                String descripcion = pieza.getDescripcion();
+	                
+	                writer.println("Pieza"+":"+idUsuario+":"+idPieza+":"+titulo+":"+anioCreacion+":"+lugarCreacion+":"+estadoPieza+":"+estaExhibida+":"+disponibleVenta+":"+valorFijo+":"+valorMinimo+":"+valorInicial+":"+fechaString+":"+esVigente+":"+descripcion);
+	                
+	                for(int k=0; k<autores.size();k++) {
+	                	String autor = autores.get(k);
+	                	writer.println("Autor"+":"+idPieza+":"+autor);
+	                }
 	            	
 	            	
 	            }
