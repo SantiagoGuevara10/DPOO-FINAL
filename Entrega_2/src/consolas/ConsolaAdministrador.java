@@ -5,6 +5,7 @@ import galeria.pieza.Pieza;
 import galeria.inventarios.InventarioGeneral;
 import subasta.Oferta;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 import java.io.IOException;
 import java.util.Date;
@@ -89,7 +90,28 @@ public class ConsolaAdministrador extends ConsolaBasica {
     }
     
     public void crearUsuario(UsuariosRegistrados users) {
-    	String idEmpleado = "20";
+        Random random = new Random();
+        List<Integer> numeros = new LinkedList<>();
+        for(int i =0; i<users.getUsuariosEnPrograma().size();i++) {
+        	String num = users.getUsuariosEnPrograma().get(i).getIdEmpleado();
+        	int numero = Integer.parseInt(num);
+        	numeros.add(numero);
+        	
+        }
+        
+        for(int i =0; i<users.getCompradoresEnPrograma().size();i++) {
+        	String num = users.getCompradoresEnPrograma().get(i).getIdUsuario();
+        	int numero = Integer.parseInt(num);
+        	numeros.add(numero);
+        	
+        }
+        
+        int numeroAleatorio;
+        do {
+            numeroAleatorio = random.nextInt(1000); // Generar un número aleatorio entre 0 y 9 (por ejemplo)
+        } while (numeros.contains(numeroAleatorio));
+        
+    	String idEmpleado = String.valueOf(numeroAleatorio);
     	String nombre = pedirCadenaAlUsuario("Ingrese su nombre completo: ");
     	String username = pedirCadenaAlUsuario("Ingrese un usuario de su preferencia");
     	String passwordHash = pedirCadenaAlUsuario("Ingrese una clave de su preferencia");
