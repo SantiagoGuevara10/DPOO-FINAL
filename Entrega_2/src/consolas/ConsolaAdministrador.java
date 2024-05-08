@@ -14,9 +14,11 @@ import java.util.HashSet;
 public class ConsolaAdministrador extends ConsolaBasica {
     private Administrador administrador;
     private InventarioGeneral inventario;
+    private UsuariosRegistrados usuariosRegistrados;
 
     public ConsolaAdministrador(InventarioGeneral inventario) {
         this.inventario = inventario;
+        this.usuariosRegistrados = usuariosRegistrados;
     }
     
     protected void mostrarMenuPrincipal() throws IOException {
@@ -32,7 +34,9 @@ public class ConsolaAdministrador extends ConsolaBasica {
             System.out.println("2. Devolver Pieza");
             System.out.println("3. Verificar Usuario");
             System.out.println("4. Registrar Oferta");
-            System.out.println("5. Salir");
+            System.out.println("5. Ver Historia de Compras");
+            System.out.println("6. Calcular Valor de Colección");
+            System.out.println("7. Salir");
 
             int opcion = pedirEnteroAlUsuario("Seleccione una opción:");
             switch (opcion) {
@@ -49,6 +53,12 @@ public class ConsolaAdministrador extends ConsolaBasica {
                     registrarOferta();
                     break;
                 case 5:
+                    verHistoriaCompras();
+                    break;
+                case 6:
+                    calcularValorColeccion();
+                    break;
+                case 7:
                     System.out.println("Saliendo al menú principal...");
                     continuar = false; 
                     break;
@@ -91,6 +101,19 @@ public class ConsolaAdministrador extends ConsolaBasica {
         Oferta oferta = new Oferta(comprador, pieza, dinero);
         System.out.println("Oferta registrada exitosamente.");
     }
+    private void verHistoriaCompras() {
+        String idUsuario = pedirCadenaAlUsuario("Ingrese el ID del comprador:");
+        CompradorPropietario comprador = buscarCompradorPorId(idUsuario);
+        String historial = administrador.verHistoriaCompras(comprador);
+        System.out.println("Historia de Compras:\n" + historial);
+    }
+
+    private void calcularValorColeccion() {
+        String idUsuario = pedirCadenaAlUsuario("Ingrese el ID del comprador:");
+        CompradorPropietario comprador = buscarCompradorPorId(idUsuario);
+        double valorTotal = administrador.calcularValorColeccion(comprador);
+        System.out.println("El valor total de la colección del comprador es: $" + valorTotal);
+    }
     
     public void crearUsuario(UsuariosRegistrados users) {
         Random random = new Random();
@@ -128,7 +151,12 @@ public class ConsolaAdministrador extends ConsolaBasica {
 
     
     private CompradorPropietario buscarCompradorPorId(String id) {
-        
-        return new CompradorPropietario(id, "Nombre", "username", "passwordHash", "contactInfo", 0.0, true, new LinkedList<>(), new LinkedList<>());
+        for (CompradorPropietario comprador : usuariosRegistrados.getCompradoresEnPrograma()) {
+            if (comprador.getIdUsuario().equals(id)) {
+                return comprador;
+            }
+        }
+        System.out.println("Comprador no encontrado.");
+        return null;
     }
 }
