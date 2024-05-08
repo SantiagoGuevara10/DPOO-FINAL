@@ -61,4 +61,23 @@ class AdministradorTests {
 
         assertTrue(comprador.isEstaVerificado());
     }
+
+    @Test
+    void testVerHistoriaCompras() {
+        comprador.agregarPieza(piezaBodega);
+        comprador.agregarPieza(piezaExhibida);
+
+        String historial = admin.verHistoriaCompras(comprador);
+        assertTrue(historial.contains("Pieza en Bodega"));
+        assertTrue(historial.contains("Pieza Exhibida"));
+    }
+
+    @Test
+    void testCalcularValorColeccion() {
+        comprador.agregarPieza(piezaBodega);
+        comprador.agregarPieza(piezaExhibida);
+
+        double valor = admin.calcularValorColeccion(comprador);
+        assertEquals(3000.0, valor);
+    }
 }

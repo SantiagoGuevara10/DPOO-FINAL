@@ -50,6 +50,28 @@ public class Administrador extends Empleado {
 	public void verificarUsuario(CompradorPropietario usuario) {
 		usuario.setEstaVerificado(true);
 	}
+	
+	public String verHistoriaCompras(CompradorPropietario comprador) {
+	    StringBuilder historial = new StringBuilder();
+	    List<Pieza> piezasCompradas = comprador.getPiezas();
+
+	    for (Pieza pieza : piezasCompradas) {
+	        String fechaIngreso = (pieza.getFechaDeIngreso() != null) ? pieza.getFechaDeIngreso().toString() : "Fecha desconocida";
+	        historial.append(String.format("%s comprada el %s por $%.2f\n",
+	                pieza.getTitulo(),
+	                fechaIngreso,
+	                pieza.getValorFijo()));
+	    }
+	    return historial.toString();
+	}
+
+    public double calcularValorColeccion(CompradorPropietario comprador) {
+        double totalValor = 0.0;
+        for (Pieza pieza : comprador.getPiezas()) {
+            totalValor += pieza.getValorFijo();
+        }
+        return totalValor;
+    }
 
 	
 
