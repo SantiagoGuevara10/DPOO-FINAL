@@ -6,13 +6,16 @@ import galeria.pieza.Pieza;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Cajero extends Empleado {
     private List<String> transacciones;
 
-    public Cajero(String idEmpleado, String nombre, String username, String passwordHash, String role, List<String> transacciones) {
+    public Cajero(String idEmpleado, String nombre, String username, String passwordHash, String role) {
         super(idEmpleado, nombre, username, passwordHash, role);
+		transacciones = new LinkedList<>();
+
         
         
     }

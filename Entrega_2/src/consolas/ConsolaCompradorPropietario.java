@@ -2,11 +2,16 @@ package consolas;
 
 import galeria.inventarios.InventarioGeneral;
 import galeria.pieza.Pieza;
+import galeria.usuarios.Administrador;
 import galeria.usuarios.CompradorPropietario;
 import galeria.usuarios.FileUtils;
+import galeria.usuarios.UsuariosRegistrados;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class ConsolaCompradorPropietario extends ConsolaBasica {
     private CompradorPropietario compradorPropietario;
@@ -88,5 +93,47 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
         } else {
             System.out.println("Pieza no disponible para la venta o no existe.");
         }
+    }
+    
+    
+    public void crearUsuario(UsuariosRegistrados users) {
+        Random random = new Random();
+        List<Integer> numeros = new LinkedList<>();
+        for(int i =0; i<users.getUsuariosEnPrograma().size();i++) {
+        	String num = users.getUsuariosEnPrograma().get(i).getIdEmpleado();
+        	int numero = Integer.parseInt(num);
+        	numeros.add(numero);
+        	
+        }
+        
+        for(int i =0; i<users.getCompradoresEnPrograma().size();i++) {
+        	String num = users.getCompradoresEnPrograma().get(i).getIdUsuario();
+        	int numero = Integer.parseInt(num);
+        	numeros.add(numero);
+        	
+        }
+        
+        int numeroAleatorio;
+        do {
+            numeroAleatorio = random.nextInt(1000); // Generar un número aleatorio entre 0 y 9 (por ejemplo)
+        } while (numeros.contains(numeroAleatorio));
+        
+    	String idEmpleado = String.valueOf(numeroAleatorio);
+    	String nombre = pedirCadenaAlUsuario("Ingrese su nombre completo: ");
+    	String username = pedirCadenaAlUsuario("Ingrese un usuario de su preferencia");
+    	String passwordHash = pedirCadenaAlUsuario("Ingrese una clave de su preferencia");
+    	String role = "Comprador";
+    	boolean piezasbool = pedirConfirmacionAlUsuario("¿Desea poner una pieza en la galería?");
+    	if (piezasbool) {
+            String[] menuPieza = new String[]{ "Título de la Pieza", "Año de creación", "Lugar de creación", "EstadoPieza", "¿Quiere exhibir la pieza?","¿Desea vender o ponerla en subasta?",  };
+            
+    		
+    	}
+
+    	CompradorPropietario admin = new CompradorPropietario(idEmpleado, nombre, username, passwordHash, role);
+    	users.addUsuario(admin);
+    	
+            
+    	
     }
 }

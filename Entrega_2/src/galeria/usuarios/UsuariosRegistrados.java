@@ -98,10 +98,15 @@ public class UsuariosRegistrados{
 	        		Cajero cajero = (Cajero) usuariosEnPrograma.get(i);
 	        		writer.println( "tipo:" + role + ":" + nombre + ":" + id + ":" + username + ":" + password);
 	        		List<String> transacciones = cajero.getTransacciones();
-	        		for(int j=0; i<transacciones.size();i++) {
-	        			String transaccion = transacciones.get(j);
-	        		    writer.println("transacciones"+":"+id+":"+transaccion);	
+	        		if (transacciones!=null) {
+	        			for(int j=0; i<transacciones.size();i++) {
+		        			String transaccion = transacciones.get(j);
+		        		    writer.println("transacciones"+":"+id+":"+transaccion);	
+		        		}
+	        			
+	        			
 	        		}
+	        		
 	        		
 	        	}
 	        	
@@ -271,9 +276,9 @@ public class UsuariosRegistrados{
 	            {
 	                String role = partes[ 1 ];
 	                String nombre = partes[ 2 ];
-	                String username = partes[ 3 ];
-	                String password = partes[ 4 ];
-	                String id = partes[ 5 ];
+	                String username = partes[ 4 ];
+	                String password = partes[ 5 ];
+	                String id = partes[ 3 ];
 	                if (role.equals("Operador")) {
 	                	Operador operador = new Operador(id,nombre, username, password, role);
 	                	usuariosEnPrograma.add(operador);
@@ -282,8 +287,7 @@ public class UsuariosRegistrados{
 	                
 		        	}
 		        	else if (role.equals("Cajero")) {
-		        	    List<String> trans = new LinkedList<>();
-		        		Cajero cajero = new Cajero(id,nombre, username, password, role, trans);
+		        		Cajero cajero = new Cajero(id,nombre, username, password, role);
 		        		usuariosEnPrograma.add(cajero);
 		        		
 		        		

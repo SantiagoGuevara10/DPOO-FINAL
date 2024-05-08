@@ -151,19 +151,27 @@ public class ConsolaPrincipal extends ConsolaBasica {
         {
         	File archivo = new File( "./datos/" + "Usuarios" );
         	tipoUsuario = "Operador";
-            ConsolaAdministrador cadmi = new ConsolaAdministrador(inventario);
-            cadmi.crearUsuario(usuariosDelPrograma);
+            ConsolaOperador coper = new ConsolaOperador(inventario);
+            coper.crearUsuario(usuariosDelPrograma);
             usuariosDelPrograma.guardarUsuarios(archivo);
             
 
         }
         else if( opcionSeleccionada == 3 )
         {
+        	File archivo = new File( "./datos/" + "Usuarios" );
             tipoUsuario = "Cajero";
+            ConsolaCajero cocaje = new ConsolaCajero(inventario);
+            cocaje.crearUsuario(usuariosDelPrograma);
+            usuariosDelPrograma.guardarUsuarios(archivo);
         }
         else if( opcionSeleccionada == 4 )
         {
+        	File archivo = new File( "./datos/" + "Usuarios" );
             tipoUsuario = "CompradorPropietario";
+            ConsolaCajero cocaje = new ConsolaCajero(inventario);
+            cocaje.crearUsuario(usuariosDelPrograma);
+            usuariosDelPrograma.guardarUsuarios(archivo);
 
         }
         
