@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 
+import galeria.usuarios.Empleado;
+import galeria.usuarios.CompradorPropietario;
 import galeria.usuarios.FileUtils;
 import galeria.usuarios.UsuariosRegistrados;
 
@@ -92,12 +94,31 @@ public class ConsolaPrincipal extends ConsolaBasica {
         System.out.print("Ingrese su contraseña: ");
         String password = reader.readLine();
 
-        if (FileUtils.verifyUser(username, password) && tipoUsuario.equals(FileUtils.getRole(username))) {
+        boolean autenticado = false;
+
+        
+        for (Empleado empleado : usuariosDelPrograma.getUsuariosEnPrograma()) {
+            if (empleado.getUsername().equals(username) && empleado.getPasswordHash().equals(password) && empleado.getRole().equals(tipoUsuario)) {
+                autenticado = true;
+                break;
+            }
+        }
+
+        
+        if (!autenticado && tipoUsuario.equals("CompradorPropietario")) {
+            for (CompradorPropietario comprador : usuariosDelPrograma.getCompradoresEnPrograma()) {
+                if (comprador.getUsername().equals(username) && comprador.getPasswordHash().equals(password)) {
+                    autenticado = true;
+                    break;
+                }
+            }
+        }
+
+        if (autenticado) {
             System.out.println("Autenticación exitosa. Bienvenido " + tipoUsuario + ".");
             lanzarConsolaUsuario(tipoUsuario);  
         } else {
             System.out.println("Credenciales incorrectas o rol incorrecto.");
-            mostrarMenuPrincipal();
         }
     }
 
