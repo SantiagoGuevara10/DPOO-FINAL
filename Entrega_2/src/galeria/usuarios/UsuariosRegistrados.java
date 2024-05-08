@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -134,7 +135,7 @@ public class UsuariosRegistrados{
 	            ;
 	            for(int j=0; j<piezas.size();j++) {
 	            	Pieza pieza = piezas.get(j);
-	                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 	            	String idPieza = pieza.getIdPieza();
 	                String titulo = pieza.getTitulo();
 	                int anioCreacion = pieza.getAnioCreacion();
@@ -195,7 +196,7 @@ public class UsuariosRegistrados{
 	           
 	            for(int j=0; j<piezasFavoritas.size();j++) {
 	            	Pieza pieza = piezasFavoritas.get(j);
-	                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 	            	String idPieza = pieza.getIdPieza();
 	                String titulo = pieza.getTitulo();
 	                int anioCreacion = pieza.getAnioCreacion();
@@ -263,7 +264,8 @@ public class UsuariosRegistrados{
 	 
 	 
 	 
- public static UsuariosRegistrados cargarEstado( File archivo ) throws FileNotFoundException, IOException, NumberFormatException, ParseException
+ @SuppressWarnings("deprecation")
+public static UsuariosRegistrados cargarEstado( File archivo ) throws FileNotFoundException, IOException, NumberFormatException, ParseException
 	    {
 	    List<Empleado>usuariosEnPrograma = new LinkedList<>();
 	    List<CompradorPropietario> compradoresEnPrograma = new LinkedList<>();
@@ -345,9 +347,16 @@ public class UsuariosRegistrados{
 	            }
 	            
 	            else if(partes[0].equals("Escultura")) {
-	            	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	            	Date fecha = formato.parse(partes[12]);
-	            	String id= partes[1];
+	            	String dateInString = partes[12];
+	                Date fecha = new Date();
+	                String[] fechita = dateInString.split( "-" );
+	                int year = Integer.parseInt(fechita[0]);
+	                int month = Integer.parseInt(fechita[1]);
+	                int day = Integer.parseInt(fechita[2]);
+	                fecha.setYear(year);
+	                fecha.setMonth(month-1);
+	                fecha.setDate(day);
+	                String id= partes[1];
 	            	String idPieza = partes[2];
 	                String titulo =  partes[3];
 	                int anioCreacion = Integer.parseInt(partes[4]);
@@ -373,9 +382,16 @@ public class UsuariosRegistrados{
 	            	
 	            }
                 else if(partes[0].equals("Fotografia")) {
-                	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	            	Date fecha = formato.parse(partes[12]);
-	            	String id= partes[1];
+                	String dateInString = partes[12];
+	                Date fecha = new Date();
+	                String[] fechita = dateInString.split( "-" );
+	                int year = Integer.parseInt(fechita[0]);
+	                int month = Integer.parseInt(fechita[1]);
+	                int day = Integer.parseInt(fechita[2]);
+	                fecha.setYear(year);
+	                fecha.setMonth(month-1);
+	                fecha.setDate(day);
+	                String id= partes[1];
 	            	String idPieza = partes[2];
 	                String titulo =  partes[3];
 	                int anioCreacion = Integer.parseInt(partes[4]);
@@ -401,8 +417,15 @@ public class UsuariosRegistrados{
                 	
                 }
                 else if(partes[0].equals("Pintura")) {
-                	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	            	Date fecha = formato.parse(partes[12]);
+                	String dateInString = partes[12];
+	                Date fecha = new Date();
+	                String[] fechita = dateInString.split( "-" );
+	                int year = Integer.parseInt(fechita[0]);
+	                int month = Integer.parseInt(fechita[1]);
+	                int day = Integer.parseInt(fechita[2]);
+	                fecha.setYear(year);
+	                fecha.setMonth(month-1);
+	                fecha.setDate(day);
 	            	String id= partes[1];
 	            	String idPieza = partes[2];
 	                String titulo =  partes[3];
@@ -430,9 +453,16 @@ public class UsuariosRegistrados{
                 	
                 }
                  else if(partes[0].equals("Video")) {
-                 	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
- 	            	Date fecha = formato.parse(partes[12]);
- 	            	String id= partes[1];
+                	 String dateInString = partes[12];
+ 	                Date fecha = new Date();
+ 	                String[] fechita = dateInString.split( "-" );
+ 	                int year = Integer.parseInt(fechita[0]);
+ 	                int month = Integer.parseInt(fechita[1]);
+ 	                int day = Integer.parseInt(fechita[2]);
+ 	                fecha.setYear(year);
+ 	                fecha.setMonth(month);
+ 	                fecha.setDate(day);
+                	String id= partes[1];
  	            	String idPieza = partes[2];
  	                String titulo =  partes[3];
  	                int anioCreacion = Integer.parseInt(partes[4]);
@@ -482,8 +512,15 @@ public class UsuariosRegistrados{
 	            }
 	            
 	            else if(partes[0].equals("EsculturaFav")) {
-	            	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	            	Date fecha = formato.parse(partes[12]);
+	            	String dateInString = partes[12];
+	                Date fecha = new Date();
+	                String[] fechita = dateInString.split( "-" );
+	                int year = Integer.parseInt(fechita[0]);
+	                int month = Integer.parseInt(fechita[1]);
+	                int day = Integer.parseInt(fechita[2]);
+	                fecha.setYear(year);
+	                fecha.setMonth(month-1);
+	                fecha.setDate(day);
 	            	String id= partes[1];
 	            	String idPieza = partes[2];
 	                String titulo =  partes[3];
@@ -509,9 +546,16 @@ public class UsuariosRegistrados{
 	            	
 	            }}}
                 else if(partes[0].equals("FotografiaFav")) {
-                	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	            	Date fecha = formato.parse(partes[12]);
-	            	String id= partes[1];
+                	String dateInString = partes[12];
+	                Date fecha = new Date();
+	                String[] fechita = dateInString.split( "-" );
+	                int year = Integer.parseInt(fechita[0]);
+	                int month = Integer.parseInt(fechita[1]);
+	                int day = Integer.parseInt(fechita[2]);
+	                fecha.setYear(year);
+	                fecha.setMonth(month-1);
+	                fecha.setDate(day);
+                	String id= partes[1];
 	            	String idPieza = partes[2];
 	                String titulo =  partes[3];
 	                int anioCreacion = Integer.parseInt(partes[4]);
@@ -536,9 +580,16 @@ public class UsuariosRegistrados{
                 	
  	                	}}}
                 else if(partes[0].equals("PinturaFav")) {
-                	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	            	Date fecha = formato.parse(partes[12]);
-	            	String id= partes[1];
+                	String dateInString = partes[12];
+	                Date fecha = new Date();
+	                String[] fechita = dateInString.split( "-" );
+	                int year = Integer.parseInt(fechita[0]);
+	                int month = Integer.parseInt(fechita[1]);
+	                int day = Integer.parseInt(fechita[2]);
+	                fecha.setYear(year);
+	                fecha.setMonth(month-1);
+	                fecha.setDate(day);
+                	String id= partes[1];
 	            	String idPieza = partes[2];
 	                String titulo =  partes[3];
 	                int anioCreacion = Integer.parseInt(partes[4]);
@@ -564,9 +615,16 @@ public class UsuariosRegistrados{
                 	
  	                	}}}
                  else if(partes[0].equals("VideoFav")) {
-                 	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
- 	            	Date fecha = formato.parse(partes[12]);
- 	            	String id= partes[1];
+                	 String dateInString = partes[12];
+ 	                Date fecha = new Date();
+ 	                String[] fechita = dateInString.split( "-" );
+ 	                int year = Integer.parseInt(fechita[0]);
+ 	                int month = Integer.parseInt(fechita[1]);
+ 	                int day = Integer.parseInt(fechita[2]);
+ 	                fecha.setYear(year);
+ 	                fecha.setMonth(month-1);
+ 	                fecha.setDate(day);
+                	String id= partes[1];
  	            	String idPieza = partes[2];
  	                String titulo =  partes[3];
  	                int anioCreacion = Integer.parseInt(partes[4]);
@@ -628,6 +686,8 @@ public class UsuariosRegistrados{
 	            
 	           return usuariosprograma; 
 	    }
+ 
+ 
 
 	}
 

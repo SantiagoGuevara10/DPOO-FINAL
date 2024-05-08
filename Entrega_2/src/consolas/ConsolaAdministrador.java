@@ -70,9 +70,19 @@ public class ConsolaAdministrador extends ConsolaBasica {
     }
 
     private void agregarPieza() {
-        String idPieza = pedirCadenaAlUsuario("Ingrese el ID de la pieza:");
-        Pieza nuevaPieza = new Pieza(idPieza, "Default Title", 2020, "Unknown", "bodega", false, false, new LinkedList<>(), 0.0, 0, 0, new Date(), true, "No description");
-        inventario.addInventarioBodega(idPieza, nuevaPieza);
+        String idComprador = pedirCadenaAlUsuario("Ingrese el ID del comprador");
+        for(int i=0; i<usuariosRegistrados.getCompradoresEnPrograma().size();i++) {
+        	CompradorPropietario comprador = usuariosRegistrados.getCompradoresEnPrograma().get(i);
+        	if(comprador.getIdUsuario().equals(idComprador)){
+        		String piezaID = pedirCadenaAlUsuario("Ingresar el ID de la pieza que ingresará");
+        		Pieza pieza = comprador.
+		        		int valor = pedirEnteroAlUsuario("Indique en donde va a colocar: 1.Bodega 2. Exhibicion");
+		        		if(valor==1) {
+		        			
+		        		}
+        	}
+        	
+        }
         System.out.println("Pieza con ID " + idPieza + " agregada exitosamente al inventario.");
     }
 

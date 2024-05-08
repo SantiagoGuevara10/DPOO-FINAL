@@ -8,9 +8,12 @@ import galeria.inventarios.PiezaVideo;
 import galeria.pieza.Pieza;
 import galeria.usuarios.Administrador;
 import galeria.usuarios.CompradorPropietario;
+import galeria.usuarios.Empleado;
 import galeria.usuarios.FileUtils;
 import galeria.usuarios.UsuariosRegistrados;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.LinkedList;
@@ -21,11 +24,13 @@ import java.util.Random;
 public class ConsolaCompradorPropietario extends ConsolaBasica {
     private CompradorPropietario compradordelPrograma;
     private InventarioGeneral inventario;
-    private UsuariosRegistrados users;
+    public UsuariosRegistrados users;
+    private File archivo;
 
-    public ConsolaCompradorPropietario(InventarioGeneral inventario,UsuariosRegistrados users) {
+    public ConsolaCompradorPropietario(InventarioGeneral inventario,UsuariosRegistrados users, File archivo) {
         this.inventario = inventario;
         this.users = users;
+        this.archivo=archivo;
     }
 
     protected void mostrarMenuPrincipal() throws IOException  {
@@ -43,7 +48,7 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
         System.out.println("4. Registrar pieza que tiene");
         System.out.println("5. Pedir verificación al Administrador");
         System.out.println("6. Salir");
-        int opcion = pedirEnteroAlUsuario("Seleccione una opción:");
+        int opcion = pedirEnteroAlUsuario("Seleccione una opción");
         switch (opcion) {
             case 1:
                 verPiezasDisponibles();
@@ -55,7 +60,7 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
                 realizarCompra();
                 break;
             case 4:
-            	registrarPieza(users, compradordelPrograma);
+            	registrarPieza(users, compradordelPrograma, archivo);
                 break;
             case 5:
                 
@@ -73,7 +78,7 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
       }
     }
 
-    private void registrarPieza(UsuariosRegistrados users, CompradorPropietario comprador) {
+    public void registrarPieza(UsuariosRegistrados users, CompradorPropietario comprador, File archivo) throws IOException {
     	 Random random = new Random();
          List<Integer> numeros = new LinkedList<>();
          for(int i =0; i<users.getUsuariosEnPrograma().size();i++) {
@@ -125,28 +130,30 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
             	peso = pedirEnteroAlUsuario("Indique el peso de la pieza");
                 boolean usaElectricidad = pedirConfirmacionAlUsuario("La escultura usa electricidad");
                 pieza = new PiezaEscultura(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, peso, usaElectricidad);
-                
+                break;
             case 2:
             	descripcion = "Fotografia";
             	boolean esDigital = pedirConfirmacionAlUsuario("La fotografia es digital");
                 pieza = new PiezaFotografia(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, esDigital);
-
+                break;
                 
             case 3:
             	descripcion = "Pintura";
             	peso = pedirEnteroAlUsuario("Indique el peso de la pieza");
                 String tecnica = pedirCadenaAlUsuario("Tecnica que tiene la pintura");
                 pieza = new PiezaPintura(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, peso, tecnica);
-                
+                break;
             case 4:
             	descripcion = "Video";	
             	String calidad = pedirCadenaAlUsuario("Ingrese la calidad del video");
 	            int duracion = pedirEnteroAlUsuario("Ingrese la duracion del video en minutos");
-	                pieza = new PiezaVideo(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, calidad, duracion);
-
+	            pieza = new PiezaVideo(idPieza, titulo, anioCreacion, lugarCreacion , estadoPieza, estaExhibida, disponibleVenta, autores, valorFijo, valorMinimo, valorInicial, fecha,esVigente, descripcion, calidad, duracion);
+	            break;
             	}
         
         comprador.agregarPieza(pieza);
+        users.guardarUsuarios(archivo);
+
     	
         
 		
@@ -159,18 +166,20 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
         } else {
             System.out.println("Piezas Disponibles:");
             for (Pieza pieza : piezasDisponibles.values()) {
-                System.out.println(pieza.toString()); 
+                System.out.println(pieza.getTitulo()); 
+                System.out.println("\n");
             }
         }
     }
 
     private void verMisPiezas() {
-        if (compradorPropietario.getPiezas() == null || compradorPropietario.getPiezas().isEmpty()) {
+        if (compradordelPrograma.getPiezas() == null || compradordelPrograma.getPiezas().isEmpty()) {
             System.out.println("No tienes ninguna pieza en tu colección.");
         } else {
             System.out.println("Tus piezas:");
-            for (Pieza pieza : compradorPropietario.getPiezas()) {
-                System.out.println(pieza); 
+            for (Pieza pieza : compradordelPrograma.getPiezas()) {
+                System.out.println(pieza.getTitulo()+" con ID "+ pieza.getIdPieza()); 
+                System.out.println("\n");
             }
         }
     }
@@ -180,9 +189,9 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
         Pieza pieza = inventario.getPiezaInventarioBodega(idPieza);
         if (pieza != null && pieza.getDisponibleVenta()) {
             double precio = pieza.getValorFijo();  
-            if (compradorPropietario.getDinero() >= precio) {
-                compradorPropietario.setDinero(compradorPropietario.getDinero() - precio);
-                compradorPropietario.getPiezas().add(pieza);
+			if (compradordelPrograma.getDinero() >= precio) {
+				compradordelPrograma.setDinero(compradordelPrograma.getDinero() - precio);
+				compradordelPrograma.getPiezas().add(pieza);
                 inventario.removeInventarioBodega(pieza.getIdPieza());  
                 System.out.println("Compra realizada exitosamente. Pieza agregada a tu colección.");
             } else {
@@ -231,4 +240,42 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
     	users.addComprador(compraaa);
     	
     	compradordelPrograma = compraaa;
-}}
+}
+    
+    public void autenticarUsuario(String tipoUsuario, BufferedReader reader) throws IOException {
+        System.out.print("Ingrese su nombre de usuario: ");
+        String username = reader.readLine();
+        System.out.print("Ingrese su contraseña: ");
+        String password = reader.readLine();
+
+        boolean autenticado = false;
+
+        
+        for (Empleado empleado : users.getUsuariosEnPrograma()) {
+            if (empleado.getUsername().equals(username) && empleado.getPasswordHash().equals(password) && empleado.getRole().equals(tipoUsuario)) {
+                autenticado = true;
+                break;
+            }
+        }
+
+        
+        if (!autenticado && tipoUsuario.equals("CompradorPropietario")) {
+            for (CompradorPropietario comprador : users.getCompradoresEnPrograma()) {
+                if (comprador.getUsername().equals(username) && comprador.getPasswordHash().equals(password)) {
+                    autenticado = true;
+                    compradordelPrograma = comprador;
+                    break;
+                }
+            }
+        }
+
+        if (autenticado) {
+            System.out.println("Autenticación exitosa. Bienvenido " + tipoUsuario + ".");
+            
+        } else {
+            System.out.println("Credenciales incorrectas o rol incorrecto.");
+        }
+    }
+
+
+}

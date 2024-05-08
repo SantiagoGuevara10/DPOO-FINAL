@@ -16,16 +16,18 @@ import galeria.usuarios.UsuariosRegistrados;
 public class ConsolaPrincipal extends ConsolaBasica {
     private InventarioGeneral inventario;
     private UsuariosRegistrados usuariosDelPrograma;
+    private File archivo = new File( "./datos/" + "Usuarios" );
+	private File archivo2 = new File( "./datos/" + "Inventario" );
 
     public ConsolaPrincipal() throws NumberFormatException, FileNotFoundException, IOException, ParseException {
-    	File archivo = new File( "./datos/" + "Usuarios" );
-    	File archivo2 = new File( "./datos/" + "Inventario" );
+    	
 
         this.inventario = InventarioGeneral.cargarEstado(archivo2);
         this.usuariosDelPrograma= UsuariosRegistrados.cargarEstado(archivo);
     }
 
     private void mostrarMenuPrincipal() throws IOException {
+    	
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             System.out.println("Menú Principal:");
@@ -47,6 +49,9 @@ public class ConsolaPrincipal extends ConsolaBasica {
                     seleccionarTipoEmpleado(reader);
                     break;
                 case 2:
+                    ConsolaCompradorPropietario cocaje = new ConsolaCompradorPropietario(inventario, usuariosDelPrograma, archivo);
+                    cocaje.autenticarUsuario("CompradorPropietario", reader);
+                    cocaje.mostrarOpcionesCompradorPropietario();
                     autenticarUsuario("CompradorPropietario", reader);
                     break;
                 case 3:
@@ -124,7 +129,9 @@ public class ConsolaPrincipal extends ConsolaBasica {
 
    
     private void lanzarConsolaUsuario(String tipoUsuario) throws IOException {
+    	File archivo = new File( "./datos/" + "Usuarios" );
         switch (tipoUsuario) {
+        
             case "Administrador":
                 ConsolaAdministrador consolaAdministrador = new ConsolaAdministrador(inventario);
                 consolaAdministrador.mostrarMenuPrincipal();
@@ -138,7 +145,7 @@ public class ConsolaPrincipal extends ConsolaBasica {
                 consolaCajero.mostrarMenuPrincipal();
                 break;
             case "CompradorPropietario":
-                ConsolaCompradorPropietario consolaComprador = new ConsolaCompradorPropietario(inventario);
+                ConsolaCompradorPropietario consolaComprador = new ConsolaCompradorPropietario(inventario, usuariosDelPrograma, archivo);
                 consolaComprador.mostrarMenuPrincipal();
                 break;
             default:
@@ -187,10 +194,10 @@ public class ConsolaPrincipal extends ConsolaBasica {
         {
         	File archivo = new File( "./datos/" + "Usuarios" );
             tipoUsuario = "CompradorPropietario";
-            ConsolaCompradorPropietario cocaje = new ConsolaCompradorPropietario(inventario, usuariosDelPrograma);
-            CompradorPropietario compradoractual = cocaje.crearUsuario(usuariosDelPrograma);
-            usuariosDelPrograma.guardarUsuarios(archivo);
+            ConsolaCompradorPropietario cocaje = new ConsolaCompradorPropietario(inventario, usuariosDelPrograma, archivo);
+            cocaje.crearUsuario(usuariosDelPrograma);
             cocaje.mostrarOpcionesCompradorPropietario();
+            
 
         }
         
