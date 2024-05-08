@@ -1,10 +1,6 @@
 package consolas;
 
 import galeria.inventarios.InventarioGeneral;
-import galeria.inventarios.PiezaEscultura;
-import galeria.inventarios.PiezaFotografia;
-import galeria.inventarios.PiezaPintura;
-import galeria.inventarios.PiezaVideo;
 import galeria.pieza.Pieza;
 import galeria.usuarios.Administrador;
 import galeria.usuarios.CompradorPropietario;
@@ -22,7 +18,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class ConsolaCompradorPropietario extends ConsolaBasica {
-    private CompradorPropietario compradordelPrograma;
+    private CompradorPropietario compradorPropietario;
     private InventarioGeneral inventario;
     public UsuariosRegistrados users;
     private File archivo;
@@ -42,7 +38,7 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
     	boolean continuar = true;
         while (continuar) {
         System.out.println("Opciones de Comprador Propietario:");
-        System.out.println("1. Ver piezas disponibles para compras");
+        System.out.println("1. Ver piezas disponibles");
         System.out.println("2. Ver mis piezas");
         System.out.println("3. Realizar compra");
         System.out.println("4. Registrar pieza que tiene");
@@ -70,7 +66,6 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
             	System.out.println("Saliendo al menú principal...");
                 continuar = false; 
                 break;
-            
             default:
             	System.out.println("Opción no válida, intente de nuevo.");
                 break;
@@ -78,6 +73,7 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
       }
     }
 
+<<<<<<< HEAD
     public void registrarPieza(UsuariosRegistrados users, CompradorPropietario comprador, File archivo) throws IOException {
     	 Random random = new Random();
          List<Integer> numeros = new LinkedList<>();
@@ -160,6 +156,9 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
 	}
 
 	private void verPiezasDisponibles() {
+=======
+    private void verPiezasDisponibles() {
+>>>>>>> bc3ed1fbd53a4ee9da5fdb2c1f57d419e0e623de
         Map<String, Pieza> piezasDisponibles = inventario.getPiezasDisponibles();
         if (piezasDisponibles.isEmpty()) {
             System.out.println("No hay piezas disponibles en este momento.");
@@ -238,6 +237,7 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
 		
 		CompradorPropietario compraaa = new CompradorPropietario(idEmpleado, nombre, username, passwordHash, info, dinero, false,piezassss ,piezasfav);
     	users.addComprador(compraaa);
+<<<<<<< HEAD
     	
     	compradordelPrograma = compraaa;
 }
@@ -279,3 +279,6 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
 
 
 }
+=======
+}}
+>>>>>>> bc3ed1fbd53a4ee9da5fdb2c1f57d419e0e623de
