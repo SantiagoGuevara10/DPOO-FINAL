@@ -73,7 +73,7 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
       }
     }
 
-<<<<<<< HEAD
+
     public void registrarPieza(UsuariosRegistrados users, CompradorPropietario comprador, File archivo) throws IOException {
     	 Random random = new Random();
          List<Integer> numeros = new LinkedList<>();
@@ -156,10 +156,7 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
 	}
 
 	private void verPiezasDisponibles() {
-=======
-    private void verPiezasDisponibles() {
->>>>>>> bc3ed1fbd53a4ee9da5fdb2c1f57d419e0e623de
-        Map<String, Pieza> piezasDisponibles = inventario.getPiezasDisponibles();
+		Map<String, Pieza> piezasDisponibles = inventario.getPiezasDisponibles();
         if (piezasDisponibles.isEmpty()) {
             System.out.println("No hay piezas disponibles en este momento.");
         } else {
