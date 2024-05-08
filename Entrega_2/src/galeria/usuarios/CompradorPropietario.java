@@ -106,6 +106,11 @@ public class CompradorPropietario {
     public void setEstaVerificado(boolean estaVerificado) {
         this.estaVerificado = estaVerificado;
     }
+    public void agregarPieza(Pieza pieza) {
+        if (!piezas.contains(pieza)) {
+            piezas.add(pieza);
+        }
+    }
 
 
     
