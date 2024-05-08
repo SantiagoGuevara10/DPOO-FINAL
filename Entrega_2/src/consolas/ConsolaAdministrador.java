@@ -25,34 +25,37 @@ public class ConsolaAdministrador extends ConsolaBasica {
     }
 
     private void mostrarOpcionesAdministrativas() {
-        System.out.println("Opciones Administrativas:");
-        System.out.println("1. Agregar Pieza");
-        System.out.println("2. Devolver Pieza");
-        System.out.println("3. Verificar Usuario");
-        System.out.println("4. Registrar Oferta");
-        System.out.println("5. Salir");
-        int opcion = pedirEnteroAlUsuario("Seleccione una opción:");
-        switch (opcion) {
-            case 1:
-                agregarPieza();
-                break;
-            case 2:
-                devolverPieza();
-                break;
-            case 3:
-                verificarUsuario();
-                break;
-            case 4:
-                registrarOferta();
-                break;
-            case 5:
-                System.out.println("Saliendo...");
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Opción no válida, intente de nuevo.");
-                mostrarOpcionesAdministrativas();
-                break;
+        boolean continuar = true;
+        while (continuar) {
+            System.out.println("\nOpciones Administrativas:");
+            System.out.println("1. Agregar Pieza");
+            System.out.println("2. Devolver Pieza");
+            System.out.println("3. Verificar Usuario");
+            System.out.println("4. Registrar Oferta");
+            System.out.println("5. Salir");
+
+            int opcion = pedirEnteroAlUsuario("Seleccione una opción:");
+            switch (opcion) {
+                case 1:
+                    agregarPieza();
+                    break;
+                case 2:
+                    devolverPieza();
+                    break;
+                case 3:
+                    verificarUsuario();
+                    break;
+                case 4:
+                    registrarOferta();
+                    break;
+                case 5:
+                    System.out.println("Saliendo al menú principal...");
+                    continuar = false; 
+                    break;
+                default:
+                    System.out.println("Opción no válida, intente de nuevo.");
+                    break;
+            }
         }
     }
 

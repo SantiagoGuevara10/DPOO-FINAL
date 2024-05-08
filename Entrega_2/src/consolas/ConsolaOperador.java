@@ -30,6 +30,8 @@ public class ConsolaOperador extends ConsolaBasica {
     }
 
     private void mostrarOpcionesDeOperador() {
+    	boolean continuar = true;
+        while (continuar) {
         System.out.println("Opciones de Operador:");
         System.out.println("1. Registrar Oferta");
         System.out.println("2. Salir");
@@ -39,14 +41,14 @@ public class ConsolaOperador extends ConsolaBasica {
                 registrarOferta();
                 break;
             case 2:
-                System.out.println("Saliendo...");
-                System.exit(0);
+            	System.out.println("Saliendo al menú principal...");
+                continuar = false; 
                 break;
             default:
-                System.out.println("Opción no válida, intente de nuevo.");
-                mostrarOpcionesDeOperador();
+            	System.out.println("Opción no válida, intente de nuevo.");
                 break;
         }
+      }
     }
 
     private void registrarOferta() {

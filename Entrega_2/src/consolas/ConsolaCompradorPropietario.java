@@ -28,6 +28,8 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
     }
 
     public void mostrarOpcionesCompradorPropietario() throws IOException {
+    	boolean continuar = true;
+        while (continuar) {
         System.out.println("Opciones de Comprador Propietario:");
         System.out.println("1. Ver piezas disponibles");
         System.out.println("2. Ver mis piezas");
@@ -45,14 +47,14 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
                 realizarCompra();
                 break;
             case 4:
-                System.out.println("Saliendo...");
-                System.exit(0);
+            	System.out.println("Saliendo al menú principal...");
+                continuar = false; 
                 break;
             default:
-                System.out.println("Opción no válida, intente de nuevo.");
-                mostrarOpcionesCompradorPropietario();
+            	System.out.println("Opción no válida, intente de nuevo.");
                 break;
         }
+      }
     }
 
     private void verPiezasDisponibles() {

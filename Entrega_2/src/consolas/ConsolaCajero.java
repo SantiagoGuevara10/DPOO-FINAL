@@ -33,6 +33,8 @@ public class ConsolaCajero extends ConsolaBasica {
     
 
     private void mostrarOpcionesDeCajero() {
+    	boolean continuar = true;
+    	while (continuar) {
         System.out.println("Opciones de Cajero:");
         System.out.println("1. Procesar Pago");
         System.out.println("2. Emitir Recibos");
@@ -47,13 +49,13 @@ public class ConsolaCajero extends ConsolaBasica {
                 break;
             case 3:
                 System.out.println("Saliendo...");
-                System.exit(0);
+                continuar = false; 
                 break;
             default:
-                System.out.println("Opción no válida, intente de nuevo.");
-                mostrarOpcionesDeCajero();
+            	System.out.println("Opción no válida, intente de nuevo.");
                 break;
         }
+      }
     }
 
     private void procesarPago() {
