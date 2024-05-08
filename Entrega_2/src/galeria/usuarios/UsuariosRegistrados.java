@@ -34,6 +34,7 @@ public class UsuariosRegistrados{
 		this.usuariosEnPrograma.add(empleado);
 	}
 	
+	
 	public void setcompradores(List<CompradorPropietario> lista) {
 		this.compradoresEnPrograma = lista;
 	}
@@ -129,7 +130,7 @@ public class UsuariosRegistrados{
 	        	boolean estaVerificado = comprador.isEstaVerificado();
 	        	
 	        	
-	            writer.println("Comprador"+idUsuario+":"+nombre+":"+username+":"+password+":"+informacionContacto+":"+dinero+":"+estaVerificado)
+	            writer.println("Comprador"+":"+idUsuario+":"+nombre+":"+username+":"+password+":"+informacionContacto+":"+dinero+":"+estaVerificado)
 	            ;
 	            for(int j=0; j<piezas.size();j++) {
 	            	Pieza pieza = piezas.get(j);

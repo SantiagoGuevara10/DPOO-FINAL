@@ -17,7 +17,9 @@ public class ConsolaPrincipal extends ConsolaBasica {
 
     public ConsolaPrincipal() throws NumberFormatException, FileNotFoundException, IOException, ParseException {
     	File archivo = new File( "./datos/" + "Usuarios" );
-        this.inventario = new InventarioGeneral(); 
+    	File archivo2 = new File( "./datos/" + "Inventario" );
+
+        this.inventario = InventarioGeneral.cargarEstado(archivo2);
         this.usuariosDelPrograma= UsuariosRegistrados.cargarEstado(archivo);
     }
 
@@ -26,7 +28,7 @@ public class ConsolaPrincipal extends ConsolaBasica {
         while (true) {
             System.out.println("Menú Principal:");
             System.out.println("1. Ingresar como Empleado");
-            System.out.println("2. Ingresar como CompradorPropietario");
+            System.out.println("2. Ingresar como Comprador o Propietario");
             System.out.println("3. Crear Usuario");
             System.out.println("4. Salir");
             System.out.print("Seleccione una opción: ");
@@ -126,12 +128,7 @@ public class ConsolaPrincipal extends ConsolaBasica {
     }
 
     private void registrarNuevoUsuario(BufferedReader reader) throws IOException {
-    	String nombre = pedirCadenaAlUsuario("Ingrese su nombre Completo: ");
-        System.out.print("Ingrese un nombre para su usuario: ");
-        String username = reader.readLine();
-        System.out.print("Ingrese una contraseña: ");
-        String password = reader.readLine();
-        String[] opciones = new String[]{ "Administrador", "Operador", "Cajero", "Comprador o Propietario" };
+    	String[] opciones = new String[]{ "Administrador", "Operador", "Cajero", "Comprador o Propietario" };
         
 
         int opcionSeleccionada = mostrarMenu( "Ingrese el tipo de usuario", opciones );
@@ -169,9 +166,10 @@ public class ConsolaPrincipal extends ConsolaBasica {
         {
         	File archivo = new File( "./datos/" + "Usuarios" );
             tipoUsuario = "CompradorPropietario";
-            ConsolaCajero cocaje = new ConsolaCajero(inventario);
+            ConsolaCompradorPropietario cocaje = new ConsolaCompradorPropietario(inventario);
             cocaje.crearUsuario(usuariosDelPrograma);
             usuariosDelPrograma.guardarUsuarios(archivo);
+            cocaje.mostrarOpcionesCompradorPropietario();
 
         }
         
@@ -181,11 +179,7 @@ public class ConsolaPrincipal extends ConsolaBasica {
 
         
 
-        FileUtils.registerUser(username, password, tipoUsuario);
-        System.out.println("Usuario registrado exitosamente. Por favor inicie sesión.");
-        lanzarConsolaUsuario(tipoUsuario);
-    
-    }
+     }
     public static void main(String[] args) throws IOException, Exception, ParseException {
         new ConsolaPrincipal().mostrarMenuPrincipal();
     }

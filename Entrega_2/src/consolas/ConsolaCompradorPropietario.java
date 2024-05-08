@@ -8,6 +8,7 @@ import galeria.usuarios.FileUtils;
 import galeria.usuarios.UsuariosRegistrados;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
         mostrarOpcionesCompradorPropietario();
     }
 
-    private void mostrarOpcionesCompradorPropietario() throws IOException {
+    public void mostrarOpcionesCompradorPropietario() throws IOException {
         System.out.println("Opciones de Comprador Propietario:");
         System.out.println("1. Ver piezas disponibles");
         System.out.println("2. Ver mis piezas");
@@ -119,21 +120,16 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
         } while (numeros.contains(numeroAleatorio));
         
     	String idEmpleado = String.valueOf(numeroAleatorio);
-    	String nombre = pedirCadenaAlUsuario("Ingrese su nombre completo: ");
+    	String nombre = pedirCadenaAlUsuario("Ingrese su nombre completo ");
     	String username = pedirCadenaAlUsuario("Ingrese un usuario de su preferencia");
     	String passwordHash = pedirCadenaAlUsuario("Ingrese una clave de su preferencia");
-    	String role = "Comprador";
-    	boolean piezasbool = pedirConfirmacionAlUsuario("¿Desea poner una pieza en la galería?");
-    	if (piezasbool) {
-            String[] menuPieza = new String[]{ "Título de la Pieza", "Año de creación", "Lugar de creación", "EstadoPieza", "¿Quiere exhibir la pieza?","¿Desea vender o ponerla en subasta?",  };
-            
-    		
-    	}
-
-    	CompradorPropietario admin = new CompradorPropietario(idEmpleado, nombre, username, passwordHash, role);
-    	users.addUsuario(admin);
+    	String info = pedirCadenaAlUsuario("Ingrese su numero celular");
+		int numeroo = pedirEnteroAlUsuario("Ingrese el monto que le gustaría tener para hacer compras");
+		double dinero = (double)numeroo;
+    	List<Pieza> piezasfav = new LinkedList<>();
+    	List<Pieza> piezassss = new LinkedList<>();
     	
-            
-    	
-    }
-}
+		
+		CompradorPropietario compraaa = new CompradorPropietario(idEmpleado, nombre, username, passwordHash, info, dinero, false,piezassss ,piezasfav);
+    	users.addComprador(compraaa);
+}}
