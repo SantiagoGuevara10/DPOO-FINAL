@@ -1,6 +1,10 @@
 package consolas;
 
 import galeria.inventarios.InventarioGeneral;
+import galeria.inventarios.PiezaEscultura;
+import galeria.inventarios.PiezaFotografia;
+import galeria.inventarios.PiezaPintura;
+import galeria.inventarios.PiezaVideo;
 import galeria.pieza.Pieza;
 import galeria.usuarios.Administrador;
 import galeria.usuarios.CompradorPropietario;
@@ -18,7 +22,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class ConsolaCompradorPropietario extends ConsolaBasica {
-    private CompradorPropietario compradorPropietario;
+    private CompradorPropietario compradordelPrograma;
     private InventarioGeneral inventario;
     public UsuariosRegistrados users;
     private File archivo;
@@ -234,8 +238,6 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
 		
 		CompradorPropietario compraaa = new CompradorPropietario(idEmpleado, nombre, username, passwordHash, info, dinero, false,piezassss ,piezasfav);
     	users.addComprador(compraaa);
-<<<<<<< HEAD
-    	
     	compradordelPrograma = compraaa;
 }
     
@@ -272,10 +274,7 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
         } else {
             System.out.println("Credenciales incorrectas o rol incorrecto.");
         }
-    }
+    
 
 
-}
-=======
 }}
->>>>>>> bc3ed1fbd53a4ee9da5fdb2c1f57d419e0e623de

@@ -194,14 +194,9 @@ public class ConsolaPrincipal extends ConsolaBasica {
         {
         	File archivo = new File( "./datos/" + "Usuarios" );
             tipoUsuario = "CompradorPropietario";
-<<<<<<< HEAD
+
             ConsolaCompradorPropietario cocaje = new ConsolaCompradorPropietario(inventario, usuariosDelPrograma, archivo);
             cocaje.crearUsuario(usuariosDelPrograma);
-=======
-            ConsolaCompradorPropietario cocaje = new ConsolaCompradorPropietario(inventario);
-            cocaje.crearUsuario(usuariosDelPrograma);
-            usuariosDelPrograma.guardarUsuarios(archivo);
->>>>>>> bc3ed1fbd53a4ee9da5fdb2c1f57d419e0e623de
             cocaje.mostrarOpcionesCompradorPropietario();
             
 
