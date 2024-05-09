@@ -18,8 +18,9 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
     private CompradorPropietario compradorPropietario;
     private InventarioGeneral inventario;
 
-    public ConsolaCompradorPropietario(InventarioGeneral inventario) {
+    public ConsolaCompradorPropietario(InventarioGeneral inventario, CompradorPropietario usuario) {
         this.inventario = inventario;
+        this.compradorPropietario = usuario;
     }
 
     protected void mostrarMenuPrincipal() throws IOException  {

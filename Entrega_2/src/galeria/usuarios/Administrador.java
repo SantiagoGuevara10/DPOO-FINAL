@@ -11,8 +11,6 @@ public class Administrador extends Empleado {
 	
 	
 	
-	
-	
     public Administrador(String idEmpleado, String nombre, String username, String passwordHash, String role) {
         super(idEmpleado, nombre, username, passwordHash, role);
         

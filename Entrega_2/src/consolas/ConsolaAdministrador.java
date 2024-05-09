@@ -6,6 +6,7 @@ import galeria.inventarios.InventarioGeneral;
 import subasta.Oferta;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.io.IOException;
 import java.util.Date;
@@ -16,7 +17,7 @@ public class ConsolaAdministrador extends ConsolaBasica {
     private InventarioGeneral inventario;
     private UsuariosRegistrados usuariosRegistrados;
 
-    public ConsolaAdministrador(InventarioGeneral inventario) {
+    public ConsolaAdministrador(InventarioGeneral inventario, UsuariosRegistrados usuariosRegistrados) {
         this.inventario = inventario;
         this.usuariosRegistrados = usuariosRegistrados;
     }
@@ -36,7 +37,8 @@ public class ConsolaAdministrador extends ConsolaBasica {
             System.out.println("4. Registrar Oferta");
             System.out.println("5. Ver Historia de Compras");
             System.out.println("6. Calcular Valor de Colección");
-            System.out.println("7. Salir");
+            System.out.println("7. Mostrar el historial de una pieza");
+            System.out.println("8. Salir");
 
             int opcion = pedirEnteroAlUsuario("Seleccione una opción:");
             switch (opcion) {
@@ -59,6 +61,8 @@ public class ConsolaAdministrador extends ConsolaBasica {
                     calcularValorColeccion();
                     break;
                 case 7:
+                	mostrarHistorialPieza();
+                case 8:
                     System.out.println("Saliendo al menú principal...");
                     continuar = false; 
                     break;
@@ -163,5 +167,17 @@ public class ConsolaAdministrador extends ConsolaBasica {
         }
         System.out.println("Comprador no encontrado.");
         return null;
+    }
+    
+    public void mostrarHistorialPieza() {
+    	Map<String, Pieza> piezas = this.inventario.getInventarioExhibido();
+    	int contador = 0;
+    	for (Pieza pieza : piezas.values()) {
+    		String value_string = String.valueOf(contador);
+    		System.out.println(value_string+"."+pieza.getTitulo());
+    		contador += contador;
+    	}
+    	int pieza_de_interes = pedirEnteroAlUsuario("Ingrese la obra que le interesa:");
+    	System.out.println(pieza_de_interes);
     }
 }
