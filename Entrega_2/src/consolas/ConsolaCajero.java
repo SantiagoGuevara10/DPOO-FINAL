@@ -38,7 +38,8 @@ public class ConsolaCajero extends ConsolaBasica {
         System.out.println("Opciones de Cajero:");
         System.out.println("1. Procesar Pago");
         System.out.println("2. Emitir Recibos");
-        System.out.println("3. Salir");
+        System.out.println("3. Mostrar el Historial de una pieza");
+        System.out.println("4. Salir");
         int opcion = pedirEnteroAlUsuario("Seleccione una opción:");
         switch (opcion) {
             case 1:
@@ -48,6 +49,9 @@ public class ConsolaCajero extends ConsolaBasica {
                 emitirRecibos();
                 break;
             case 3:
+            	mostrarHistorialPieza();
+            	break;
+            case 4:
                 System.out.println("Saliendo...");
                 continuar = false; 
                 break;
@@ -135,5 +139,22 @@ public class ConsolaCajero extends ConsolaBasica {
     	
     }
 
-    
+    public void mostrarHistorialPieza(){
+    	Map<String, Pieza> piezas = this.inventario.getInventarioExhibido();
+    	for (Pieza pieza : piezas.values()) {
+    		System.out.println(pieza.getIdPieza()+"."+pieza.getTitulo());
+    	}
+    	String pieza_de_interes = pedirCadenaAlUsuario("Ingrese el ID de la obra que le interesa:");
+    	Pieza pieza = piezas.get(pieza_de_interes);
+    	
+    	if (pieza != null) {
+    		pieza.getHistorialPropietarios().forEach(x -> {
+    			System.out.println(x.getNombre());
+    		});
+    	
+    		pieza.getHistorialVentas().forEach(x -> {
+    			System.out.println("Fue comprada por " + x.getComprador() + " Por " + x.getDinero());
+    		});
+    	}
+    }
 }

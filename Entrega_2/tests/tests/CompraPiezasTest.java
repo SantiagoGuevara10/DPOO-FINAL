@@ -25,4 +25,10 @@ public class CompraPiezasTest {
         assertEquals(3000, comprador.getDinero());
         assertFalse(inventario.getPiezasDisponibles().containsKey("p002"));
     }
+    @Test
+    public void testHistorialPiezaDisponible() {
+    	int tamanoInicial = inventario.getPiezaInventarioExhibido("p002").getHistorialPropietarios().size();
+    	comprador.agregarPieza(inventario.getPiezaInventarioExhibido("p002"));
+    	assertFalse(inventario.getPiezaInventarioExhibido("p002").getHistorialPropietarios().size() >= tamanoInicial);
+    }
 }

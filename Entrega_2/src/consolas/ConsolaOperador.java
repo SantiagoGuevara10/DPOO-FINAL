@@ -1,6 +1,8 @@
 package consolas;
 
 import galeria.inventarios.InventarioGeneral;
+import galeria.pieza.Pieza;
+
 import java.io.IOException;
 import galeria.usuarios.Operador;
 import galeria.usuarios.UsuariosRegistrados;
@@ -34,13 +36,17 @@ public class ConsolaOperador extends ConsolaBasica {
         while (continuar) {
         System.out.println("Opciones de Operador:");
         System.out.println("1. Registrar Oferta");
-        System.out.println("2. Salir");
+        System.out.println("2. Mostrar Historial de una Pieza");
+        System.out.println("3. Salir");
         int opcion = pedirEnteroAlUsuario("Seleccione una opción:");
         switch (opcion) {
             case 1:
                 registrarOferta();
                 break;
             case 2:
+            	mostrarHistorialPieza();
+            	break;
+            case 3:
             	System.out.println("Saliendo al menú principal...");
                 continuar = false; 
                 break;
@@ -91,5 +97,23 @@ public class ConsolaOperador extends ConsolaBasica {
     	
             
     	
+    }
+    public void mostrarHistorialPieza(){
+    	Map<String, Pieza> piezas = this.inventario.getInventarioExhibido();
+    	for (Pieza pieza : piezas.values()) {
+    		System.out.println(pieza.getIdPieza()+"."+pieza.getTitulo());
+    	}
+    	String pieza_de_interes = pedirCadenaAlUsuario("Ingrese el ID de la obra que le interesa:");
+    	Pieza pieza = piezas.get(pieza_de_interes);
+    	
+    	if (pieza != null) {
+    		pieza.getHistorialPropietarios().forEach(x -> {
+    			System.out.println(x.getNombre());
+    		});
+    	
+    		pieza.getHistorialVentas().forEach(x -> {
+    			System.out.println("Fue comprada por " + x.getComprador() + " Por " + x.getDinero());
+    		});
+    	}
     }
 }

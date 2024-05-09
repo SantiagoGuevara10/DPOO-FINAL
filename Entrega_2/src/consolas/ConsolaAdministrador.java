@@ -177,12 +177,14 @@ public class ConsolaAdministrador extends ConsolaBasica {
     	String pieza_de_interes = pedirCadenaAlUsuario("Ingrese el ID de la obra que le interesa:");
     	Pieza pieza = piezas.get(pieza_de_interes);
     	
-    	pieza.getHistorialPropietarios().forEach(x -> {
-    		System.out.println(x.getNombre());
-    	});
+    	if (pieza != null) {
+    		pieza.getHistorialPropietarios().forEach(x -> {
+    			System.out.println(x.getNombre());
+    		});
     	
-    	pieza.getHistorialVentas().forEach(x -> {
-    		System.out.println("Fue comprada por " + x.getComprador() + " Por " + x.getDinero());
-    	});
+    		pieza.getHistorialVentas().forEach(x -> {
+    			System.out.println("Fue comprada por " + x.getComprador() + " Por " + x.getDinero());
+    		});
+    	}
     }
 }
