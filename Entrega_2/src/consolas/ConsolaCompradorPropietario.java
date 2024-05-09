@@ -22,6 +22,9 @@ public class ConsolaCompradorPropietario extends ConsolaBasica {
         this.inventario = inventario;
         this.compradorPropietario = usuario;
     }
+    public ConsolaCompradorPropietario(InventarioGeneral inventario) {
+        this.inventario = inventario;
+    }
 
     protected void mostrarMenuPrincipal() throws IOException  {
         System.out.println("Bienvenido a la consola de cliente, ");

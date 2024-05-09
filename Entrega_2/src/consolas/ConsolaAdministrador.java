@@ -79,7 +79,7 @@ public class ConsolaAdministrador extends ConsolaBasica {
         CompradorPropietario propietario = this.buscarCompradorPorId(idPropietario);
         Pieza nuevaPieza = new Pieza(idPieza, "Default Title", 2020, "Unknown", "bodega", false, false, new LinkedList<>(), 0.0, 0, 0, new Date(), true, "No description");
         inventario.addInventarioBodega(idPieza, nuevaPieza);
-        if (!propietario.equals(null)) {
+        if (propietario != null) {
         	propietario.agregarPieza(nuevaPieza);
         }
         System.out.println("Pieza con ID " + idPieza + " agregada exitosamente al inventario.");
@@ -169,15 +169,20 @@ public class ConsolaAdministrador extends ConsolaBasica {
         return null;
     }
     
-    public void mostrarHistorialPieza() {
+    public void mostrarHistorialPieza(){
     	Map<String, Pieza> piezas = this.inventario.getInventarioExhibido();
-    	int contador = 0;
     	for (Pieza pieza : piezas.values()) {
-    		String value_string = String.valueOf(contador);
-    		System.out.println(value_string+"."+pieza.getTitulo());
-    		contador += contador;
+    		System.out.println(pieza.getIdPieza()+"."+pieza.getTitulo());
     	}
-    	int pieza_de_interes = pedirEnteroAlUsuario("Ingrese la obra que le interesa:");
-    	System.out.println(pieza_de_interes);
+    	String pieza_de_interes = pedirCadenaAlUsuario("Ingrese el ID de la obra que le interesa:");
+    	Pieza pieza = piezas.get(pieza_de_interes);
+    	
+    	pieza.getHistorialPropietarios().forEach(x -> {
+    		System.out.println(x.getNombre());
+    	});
+    	
+    	pieza.getHistorialVentas().forEach(x -> {
+    		System.out.println("Fue comprada por " + x.getComprador() + " Por " + x.getDinero());
+    	});
     }
 }
