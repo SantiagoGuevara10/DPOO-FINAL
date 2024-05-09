@@ -110,8 +110,13 @@ public class CompradorPropietario {
         if (!piezas.contains(pieza)) {
             piezas.add(pieza);
         }
+        pieza.setPropietario(this);
     }
-
-
+    
+    public void removerPieza(Pieza pieza) {
+    	if (this.piezas.contains(pieza)) {
+    		this.piezas.remove(pieza);
+    	}
+    }
     
 }

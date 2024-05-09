@@ -1,9 +1,11 @@
 package galeria.pieza;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import galeria.usuarios.CompradorPropietario;
+import subasta.Oferta;
 
 /**
  * Clase que representa una pieza de arte en la galería.
@@ -23,6 +25,8 @@ public class Pieza {
     private Date fechaDeIngreso;
     private boolean esVigente;
     private String descripcion;
+    private List<CompradorPropietario> historialPropietarios;
+    private List<Oferta> historialVentas;
 
     public Pieza(String idPieza, String titulo, int anioCreacion, String lugarCreacion, 
                  String estadoPieza, boolean estaExhibida, boolean disponibleVenta, 
@@ -42,6 +46,8 @@ public class Pieza {
         this.fechaDeIngreso = fechaDeIngreso;
         this.esVigente = esVigente;
         this.descripcion = descripcion;
+        this.historialPropietarios = new ArrayList<CompradorPropietario>();
+        this.historialVentas = new ArrayList<Oferta>();
     }
 
   
@@ -117,5 +123,18 @@ public class Pieza {
 
     public void actualizarEstadoExhibicion(boolean estaExhibida) {
         this.estaExhibida = estaExhibida;
+    }
+    public List<CompradorPropietario> getHistorialPropietarios() {
+    	return this.historialPropietarios;
+    }
+    public List<Oferta> getHistorialVentas() {
+    	return this.historialVentas;
+    }
+    public void setPropietario(CompradorPropietario nuevoPropietario) {
+    	this.historialPropietarios.add(nuevoPropietario);
+    }
+    public void setVenta(Oferta oferta) {
+    	CompradorPropietario nuevoPropietario = oferta.getComprador();
+    	this.historialVentas.add(oferta);
     }
 }

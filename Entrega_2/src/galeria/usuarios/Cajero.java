@@ -3,6 +3,8 @@ package galeria.usuarios;
 
 
 import galeria.pieza.Pieza;
+import subasta.Oferta;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,13 +30,25 @@ public class Cajero extends Empleado {
     	this.transacciones.add(transaccion);
     }
     
+    public Oferta crearOferta(CompradorPropietario comprador, double dinero, Pieza pieza) {
+    	return new Oferta(comprador, pieza, dinero);
+    }
+    
     public void procesarPago(CompradorPropietario comprador, CompradorPropietario vendedor, double monto, Pieza pieza) {
         
+    	Oferta venta = this.crearOferta(comprador, monto, pieza);
+    	
         if (comprador.getDinero() >= monto) {
             
             comprador.setDinero(comprador.getDinero() - monto);
       
             vendedor.setDinero(vendedor.getDinero() + monto);
+            
+            comprador.agregarPieza(pieza);
+            
+            vendedor.removerPieza(pieza);
+            
+            pieza.setVenta(venta);
      
             transacciones.add("Pago de $" + monto + " realizado por " + comprador.getNombre() + " para la pieza " + pieza.getTitulo());
             

@@ -6,17 +6,17 @@ import galeria.pieza.Pieza;
 import galeria.usuarios.CompradorPropietario;
 
 public class Oferta {
-	private int dinero;
+	private double dinero;
 	private CompradorPropietario comprador;
 	private Pieza pieza;
 	
-	public Oferta(CompradorPropietario comprador, Pieza pieza, int dinero) {
+	public Oferta(CompradorPropietario comprador, Pieza pieza, double dinero) {
 		this.comprador = comprador;
 		this.pieza = pieza;
 		this.dinero = dinero;
 	}
 	
-	public int getDinero() {
+	public double getDinero() {
 		return dinero;
 	}
 	public void setDinero(int dinero) {
